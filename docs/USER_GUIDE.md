@@ -461,7 +461,7 @@ Bogus seeder fills it with realistic demo data on first run (delete `Features/Sa
   (with a live total preview); the server snapshots each product's price and computes subtotal, tax, and
   total. An order advances through a fixed lifecycle — **Draft → Submitted → Paid → Shipped → Delivered**
   (or **Cancelled**) — and the detail page only offers the legal next steps. Download a branded **PDF
-  invoice** for any order. Submitting/paying/shipping also fire outgoing webhook events (§8.9).
+  invoice** for any order. Submitting/paying/shipping also fire outgoing webhook events ([§8.9](#89-webhooks-outgoing)).
 - **Products** — a searchable, filterable catalog (by category and active status), money-formatted
   prices, **product images** (drag-and-drop upload; the first is the thumbnail), a **Table ⇄ Cards** view
   toggle, **soft delete + restore** (a "Deleted" toggle), and a concurrency-safe editor: if someone else
@@ -474,7 +474,7 @@ Bogus seeder fills it with realistic demo data on first run (delete `Features/Sa
 - **Import & export** — every list exports to **CSV/Excel/PDF** (the Export menu). Products and Customers
   also **import** from CSV/Excel: download the template, fill it in, upload — bad rows are reported by
   line number (e.g. unknown category, duplicate SKU) without failing the rest of the batch.
-- **Sales dashboard** — add Sales widgets to your home dashboard (§8.8): revenue and order **stats**, a
+- **Sales dashboard** — add Sales widgets to your home dashboard ([§8.8](#88-dashboard-home)): revenue and order **stats**, a
   6-month **revenue trend**, **top products**, an **order-status** breakdown, and **recent orders**. They
   come pre-placed for anyone who can read orders.
 - **Comments & @mentions** — every Sales record's detail page has a **comments** thread beside its
