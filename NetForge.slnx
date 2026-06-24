@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/tests/">
+    <Project Path="tests/Tests.Unit/NetForge.Tests.Unit.csproj" />
+    <Project Path="tests/Tests.Integration/NetForge.Tests.Integration.csproj" />
+  </Folder>
+  <Project Path="netforge.client/netforge.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="NetForge.Server/NetForge.Server.csproj" />
+</Solution>

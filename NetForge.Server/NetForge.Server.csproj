@@ -1,0 +1,60 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <SpaRoot>..\netforge.client</SpaRoot>
+    <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
+    <SpaProxyServerUrl>https://localhost:3000</SpaProxyServerUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Asp.Versioning.Http" Version="10.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
+      <Version>10.*-*</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- CVE-2025-6965 (GHSA-2m69-gcr7-jv3q): the SQLite bundled by SQLitePCLRaw.lib.e_sqlite3 2.1.11 — the
+         version Microsoft's EF Core 10 Sqlite provider and Hangfire.Storage.SQLite both pull transitively, and
+         the current .NET ecosystem default (10.0.9 still ships it; bundle_green has no 3.0 successor). The bug is
+         a memory error reachable only through attacker-controlled SQL with crafted aggregate terms; this app
+         issues only parameterized EF/Hangfire queries, never raw caller SQL, so it is not reachable. Self-clears
+         once EF/SQLitePCLRaw ship SQLite >= 3.50.2. Re-evaluate if you add raw SQL over untrusted input. -->
+    <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-2m69-gcr7-jv3q" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Serilog.AspNetCore" Version="10.0.0" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.14.14" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
+    <PackageReference Include="MailKit" Version="4.17.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\netforge.client\netforge.client.esproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+
+
+
+  <ItemGroup>
+    <!-- Test projects exercise internal slice types directly (validators, mappers are internal sealed). -->
+    <InternalsVisibleTo Include="NetForge.Tests.Unit" />
+    <InternalsVisibleTo Include="NetForge.Tests.Integration" />
+  </ItemGroup>
+
+</Project>
