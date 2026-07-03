@@ -12,6 +12,9 @@
   <ItemGroup>
     <PackageReference Include="Asp.Versioning.Http" Version="10.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.8" />
+    <!-- Pin above the 2.0.0 that Microsoft.AspNetCore.OpenApi 10.0.8 pulls transitively: 2.0.0 has a circular-
+         reference DoS (GHSA-v5pm-xwqc-g5wc). 2.7.5 is the patched, API-compatible 2.x. -->
+    <PackageReference Include="Microsoft.OpenApi" Version="2.7.5" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
       <Version>10.*-*</Version>
     </PackageReference>

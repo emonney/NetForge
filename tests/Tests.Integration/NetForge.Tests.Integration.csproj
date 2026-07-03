@@ -34,4 +34,10 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- SQLite transitive vuln (GHSA-2m69-gcr7-jv3q) is justified + suppressed in NetForge.Server.csproj;
+         repeated here because NuGetAuditSuppress doesn't flow across a ProjectReference. -->
+    <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-2m69-gcr7-jv3q" />
+  </ItemGroup>
+
 </Project>

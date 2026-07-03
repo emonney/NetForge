@@ -176,8 +176,13 @@ template (the accent comes from `App:BrandColor`).
 
 ### 3.5 Scaffolding options
 
-Create a project with `dotnet new netforge` (CLI) or the **online configurator**. The options map 1:1
-between the two:
+Three ways to create a project, all driving the same options:
+
+- **CLI wizard** (easiest) — `dotnet tool install -g NetForge.Cli`, then `netforge new` walks you through edition, database, features, OAuth, and theme, resolves feature dependencies, and runs `dotnet new` for you. Scriptable too: `netforge new -n MyApp --tier basic --with dashboard,webhooks --yes` (or `--dry-run`).
+- **Raw template** — the free Basic edition is `dotnet new install NetForge.Templates`, then `dotnet new netforge -n MyApp`. The full Pro template (`NetForge.Pro.Templates`, with the `--tier`/feature/database flags below) installs from the sponsor-gated feed (see the configurator).
+- **Online configurator** — pick features visually at <https://netforge.ebenmonney.com> and download a ZIP.
+
+The options map 1:1 across all three:
 
 | CLI flag | Configurator | Values | Default | Effect |
 |---|---|---|---|---|

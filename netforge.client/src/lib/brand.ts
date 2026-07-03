@@ -9,4 +9,4 @@ export const DEFAULT_BRAND_COLOR = '';
 
 /** The scaffold's starting theme key (e.g. "ocean"), set at creation time. Replaced by the template engine;
  * an un-scaffolded checkout keeps the literal, which isn't a known theme and so falls back to the default. */
-export const DEFAULT_THEME = '';
+export const DEFAULT_THEME = 'default';
