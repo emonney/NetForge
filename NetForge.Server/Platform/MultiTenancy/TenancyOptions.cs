@@ -20,6 +20,13 @@ public sealed class TenancyOptions
 /// <summary>
 /// Marker for tenant-owned entities. The DbContext adds a global query filter
 /// (WHERE TenantId = current) to every entity implementing this.
+/// <para>
+/// <b>Leave <see cref="TenantId"/> unset</b> (empty) on new rows — <see cref="TenantInterceptor"/> stamps
+/// the active tenant, and only skips rows that already carry one so a seeder can write cross-tenant data.
+/// A property initializer therefore reads as "already stamped": defaulting it to <c>DefaultTenant</c>
+/// silently writes <em>every</em> row of that entity into the default tenant, where the query filter can
+/// never see it again.
+/// </para>
 /// </summary>
 public interface ITenantScoped
 {

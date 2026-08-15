@@ -4,6 +4,9 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <!-- SpaProxy launches the chosen client's dev server on `dotnet run`. Both arms are present in the
+         live repo (the guards are inert comments); the React arm is second so it wins there. The
+         frontend scaffold flag keeps exactly one. -->
     <SpaRoot>..\netforge.client</SpaRoot>
     <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:3000</SpaProxyServerUrl>
@@ -47,10 +50,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- Both clients have an .esproj so they show in the solution, but only React is referenced here
+         (a build-order dependency, ReferenceOutputAssembly=false). The Angular client is launched by
+         SpaProxy via SpaRoot and isn't referenced — publishing its localized build is a documented
+         follow-up (ANGULAR_PLAN.md); wiring the reference before then would break `dotnet publish`. -->
     <ProjectReference Include="..\netforge.client\netforge.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>
+
 
 
 

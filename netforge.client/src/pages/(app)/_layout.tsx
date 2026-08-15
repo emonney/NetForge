@@ -16,6 +16,7 @@ export default function AppLayout() {
   const { t } = useTranslation();
   const location = useLocation();
 
+
   if (isLoading) return <FullScreenLoader />;
   if (!isAuthenticated) {
     return <Navigate to={`/login?returnUrl=${encodeURIComponent(location.pathname)}`} replace />;

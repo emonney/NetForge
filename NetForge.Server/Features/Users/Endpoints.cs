@@ -292,7 +292,7 @@ public sealed class UserEndpoints : IFeatureEndpoints
         var roles = (await tenantRoles.RoleNamesAsync(user.Id, tenantId)).ToArray();
         var lockedOut = user.LockoutEnd is { } end && end > now;
         return new UserDto(
-            user.Id, user.Email ?? string.Empty, user.DisplayName, user.EmailConfirmed,
+            user.Id, user.Email ?? string.Empty, user.DisplayName, user.AvatarUrl, user.EmailConfirmed,
             user.TwoFactorEnabled, lockedOut, roles, user.CreatedAt, user.Id == self);
     }
 

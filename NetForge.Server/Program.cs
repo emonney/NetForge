@@ -62,18 +62,10 @@ var app = builder.Build();
 try
 {
     using var scope = app.Services.CreateScope();
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    // SQLite ships migrations (full history); the server providers create the schema from the model
-    // (EnsureCreated). Add migrations for a server provider with `dotnet ef migrations add` when you want
+    // Migrate + seed via the shared seeder (Data/Seed/DatabaseSeeder) so app boot and the demo factory-reset
+    // stay in lockstep. Add migrations for a server provider with `dotnet ef migrations add` when you want
     // versioned schema there — see the database notes in USER_GUIDE.
-    if (db.Database.IsSqlite()) db.Database.Migrate();
-    else db.Database.EnsureCreated();
-    await IdentitySeeder.SeedAsync(scope.ServiceProvider);
-
-    if (app.Environment.IsDevelopment() || app.Configuration.GetValue<bool>("Seed:DemoData"))
-    {
-        await DemoUsersSeeder.SeedAsync(scope.ServiceProvider);
-    }
+    await DatabaseSeeder.SeedAsync(scope.ServiceProvider, app.Configuration, app.Environment);
 }
 catch (Exception ex)
 {
@@ -84,6 +76,7 @@ catch (Exception ex)
 app.UseExceptionHandler();
 
 app.UseSerilogRequestLogging();
+
 
 app.UseDefaultFiles();
 app.MapStaticAssets();

@@ -10,7 +10,8 @@
     "close": "Schließen",
     "saveChanges": "Änderungen speichern",
     "confirm": "Bestätigen",
-    "sections": "Abschnitte"
+    "sections": "Abschnitte",
+    "serverError": "Etwas ist schiefgelaufen. Bitte versuche es gleich erneut."
   },
   "actions": {
     "edit": "Bearbeiten",
@@ -881,6 +882,7 @@
     "edit": "Bearbeiten",
     "emptyTitle": "Dein Dashboard ist leer",
     "emptyDesc": "Füge Widgets hinzu, um die Kennzahlen und Aktivitäten zu verfolgen, die dir wichtig sind.",
+    "chartTotal": "Gesamt",
     "openError": "Dieses Dashboard konnte nicht geöffnet werden.",
     "saved": "Dashboard gespeichert",
     "saveError": "Dashboard konnte nicht gespeichert werden.",
@@ -899,25 +901,31 @@
     "addDesc": "Wähle ein Widget für dein Dashboard.",
     "configure": "{{title}} konfigurieren",
     "configureWidget": "Widget konfigurieren",
-    "removeWidget": "Widget entfernen"
+    "removeWidget": "Widget entfernen",
+    "widthFollows": "Diese Breite folgt deinem Layout in voller Breite. Verschiebe hier ein Widget, um diese Breite eigenständig anzuordnen.",
+    "widthCustom": "Diese Breite hat eine eigene Anordnung.",
+    "widthReset": "Dem Layout in voller Breite folgen"
   },
   "widgets": {
-    "stat": { "title": "Kennzahl", "desc": "Eine einzelne Kernkennzahl — Benutzer, Aktivität oder Benachrichtigungen." },
+    "stat": { "title": "Kennzahl", "desc": "Eine einzelne Kennzahl mit einer Trend-Sparkline." },
     "activity": { "title": "Aktivitäts-Feed", "desc": "Die neuesten Audit-Ereignisse im Arbeitsbereich." },
-    "recent": { "title": "Neueste Benachrichtigungen", "desc": "Deine neuesten Benachrichtigungen auf einen Blick." },
-    "line": { "title": "Liniendiagramm", "desc": "Ein Trend im Zeitverlauf — z. B. Registrierungen." },
-    "area": { "title": "Flächendiagramm", "desc": "Ein gefüllter Trend im Zeitverlauf." },
+    "recent": { "title": "Neueste Benachrichtigungen", "desc": "Deine neuesten Benachrichtigungen." },
+    "line": { "title": "Liniendiagramm", "desc": "Ein Verlauf über die Zeit – z. B. Registrierungen." },
+    "area": { "title": "Flächendiagramm", "desc": "Eine gefüllte Trendlinie über die Zeit." },
     "bar": { "title": "Balkendiagramm", "desc": "Kategorien vergleichen — z. B. Benutzer nach Rolle." },
-    "pie": { "title": "Kreisdiagramm", "desc": "Eine Teil-zum-Ganzen-Aufschlüsselung." },
-    "quicklinks": { "title": "Schnellzugriffe", "desc": "Eine benutzerdefinierte Liste von Verknüpfungen zu App-Seiten." },
+    "donut": {
+      "title": "Ringdiagramm",
+      "desc": "Eine Aufschlüsselung als Anteil am Gesamtwert."
+    },
+    "quicklinks": { "title": "Schnellzugriffe", "desc": "Verknüpfungen zu den Seiten, die du am häufigsten nutzt." },
     "markdown": { "title": "Notiz", "desc": "Eine freie Markdown-Notiz (Überschriften, Listen, Fett)." },
-    "salesStat": { "title": "Verkaufskennzahl", "desc": "Eine zentrale Verkaufskennzahl — Umsatz, Bestellungen, Kunden oder durchschnittlicher Bestellwert." },
-    "salesRevenueTrend": { "title": "Umsatztrend", "desc": "Realisierter Umsatz der letzten sechs Monate." },
+    "salesStat": { "title": "Verkaufskennzahl", "desc": "Eine einzelne Verkaufskennzahl (Umsatz, Bestellungen, …)." },
+    "salesRevenueTrend": { "title": "Umsatztrend", "desc": "Monatlicher Umsatz der letzten sechs Monate." },
     "salesTopProducts": { "title": "Top-Produkte", "desc": "Meistverkaufte Produkte nach Umsatz." },
-    "salesOrderStatus": { "title": "Bestellstatus", "desc": "Aufschlüsselung der Bestellungen nach Status." },
-    "salesRecentOrders": { "title": "Neueste Bestellungen", "desc": "Die neuesten Bestellungen aller Kunden." },
-    "kpiHero": { "title": "Highlight", "desc": "Eine zentrale Kennzahl in einer kräftig farbigen Karte." },
-    "goal": { "title": "Ziel", "desc": "Fortschritt zu einem Ziel als Ring." },
+    "salesOrderStatus": { "title": "Bestellstatus", "desc": "Bestellungen nach Status." },
+    "salesRecentOrders": { "title": "Neueste Bestellungen", "desc": "Die zuletzt aufgegebenen Bestellungen." },
+    "kpiHero": { "title": "KPI-Highlight", "desc": "Eine zentrale Kennzahl in einer auffälligen, gebrandeten Karte." },
+    "goal": { "title": "Ziel", "desc": "Fortschritt zu einem Ziel, als Ring." },
     "leaderboard": { "title": "Rangliste", "desc": "Sortierte Balken – Top-Rollen oder Aktivitätskategorien." },
     "field": {
       "target": "Zielwert",
@@ -931,9 +939,9 @@
     "opt": {
       "totalUsers": "Benutzer gesamt",
       "newUsersThisWeek": "Neue Benutzer diese Woche",
-      "auditToday": "Heutige Aktivität",
+      "auditToday": "Ereignisse heute",
       "unreadNotifications": "Ungelesene Benachrichtigungen",
-      "signups": "Registrierungen (30 Tage)",
+      "signups": "Registrierungen über die Zeit",
       "usersByRole": "Benutzer nach Rolle",
       "auditByCategory": "Aktivität nach Kategorie",
       "revenue": "Umsatz",
@@ -1108,7 +1116,7 @@
     },
     "brand": {
       "tagline": "Erstelle Business-Apps in KI-Geschwindigkeit.",
-      "subtitle": "Ein moderner ASP.NET-Core-+-React-Starter, der schon beim ersten Start wie ein Produkt von 2026 aussieht — Auth, Rollen, Audit und eine schöne UI, sofort einsatzbereit.",
+      "subtitle": "Ein moderner ASP.NET-Core-+-React-Starter, der schon beim ersten Start wie ein Produkt von {{year}} aussieht — Auth, Rollen, Audit und eine schöne UI, sofort einsatzbereit.",
       "feature1": "Sicher von Haus aus — 2FA, Sitzungen, vollständig auditiert",
       "feature2": "Erweitere eine ganze Funktion mit einem einzigen Prompt",
       "feature3": "Dark Mode, i18n und RTL ab dem ersten Commit"

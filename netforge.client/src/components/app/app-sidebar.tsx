@@ -14,7 +14,7 @@ export function AppSidebar() {
       <SidebarHeader className="h-14 justify-center">
         <Link
           to="/"
-          className="focus-visible:ring-ring/50 flex items-center rounded-md px-1 outline-none focus-visible:ring-[3px]"
+          className="focus-visible:ring-ring/50 flex min-w-0 items-center rounded-md px-1 outline-none focus-visible:ring-[3px]"
         >
           <ShellBrand className="group-data-[collapsible=icon]:hidden" />
           <ShellBrand markOnly className="hidden group-data-[collapsible=icon]:inline-flex" />

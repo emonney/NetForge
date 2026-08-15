@@ -17,8 +17,11 @@ const TIME_ZONES: string[] =
     ? Intl.supportedValuesOf('timeZone')
     : [Intl.DateTimeFormat().resolvedOptions().timeZone];
 
+// bg-background (not transparent): a solid, themed background makes the browser render the native option
+// popup with the page's color-scheme, so it stays dark + legible in dark mode (a transparent select
+// popup falls back to a light scheme in Chromium, hiding the text).
 const selectClass =
-  'border-input bg-transparent focus-visible:border-ring focus-visible:ring-ring/50 h-9 w-full rounded-md border px-3 text-sm shadow-xs outline-none focus-visible:ring-[3px] disabled:opacity-50';
+  'border-input bg-background text-foreground focus-visible:border-ring focus-visible:ring-ring/50 h-9 w-full rounded-md border px-3 text-sm shadow-xs outline-none focus-visible:ring-[3px] disabled:opacity-50';
 
 /**
  * User-scoped preferences (language + timezone), persisted on the account so they follow the user

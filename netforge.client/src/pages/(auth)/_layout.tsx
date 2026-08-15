@@ -57,7 +57,7 @@ function BrandPanel() {
         <h1 className="text-3xl leading-tight font-semibold tracking-tight text-balance">
           {t('auth.brand.tagline')}
         </h1>
-        <p className="text-balance text-slate-300">{t('auth.brand.subtitle')}</p>
+        <p className="text-balance text-slate-300">{t('auth.brand.subtitle', { year: new Date().getFullYear() })}</p>
         <ul className="space-y-3 text-sm text-slate-200">
           <Feature icon={ShieldCheck}>{t('auth.brand.feature1')}</Feature>
           <Feature icon={Zap}>{t('auth.brand.feature2')}</Feature>

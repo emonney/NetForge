@@ -25,8 +25,14 @@ export const LANGUAGES: LanguageMeta[] = [
 
 export const supportedLngs = LANGUAGES.map((l) => l.code);
 
+/**
+ * The direction for a language tag, regional variants included. Browsers report `ar-EG`, never a bare `ar`,
+ * and `nonExplicitSupportedLngs` below resolves that tag's *resources* to the base language while leaving
+ * `i18n.language` regional — so matching the tag whole hands real Arabic users Arabic text in an LTR page.
+ */
 export function directionOf(code: string): 'ltr' | 'rtl' {
-  return LANGUAGES.find((l) => l.code === code)?.dir ?? 'ltr';
+  const base = code.toLowerCase().split('-')[0];
+  return LANGUAGES.find((l) => l.code === base)?.dir ?? 'ltr';
 }
 
 i18n

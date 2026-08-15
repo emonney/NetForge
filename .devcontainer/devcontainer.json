@@ -1,0 +1,26 @@
+{
+  "name": "NetForge",
+  "image": "mcr.microsoft.com/dotnet/sdk:10.0",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": { "version": "22" }
+  },
+  "forwardPorts": [7000, 5000, 3000, 4200],
+  "portsAttributes": {
+    "3000": { "label": "Web app (React)", "onAutoForward": "openPreview" },
+    "4200": { "label": "Web app (Angular)", "onAutoForward": "openPreview" },
+    "7000": { "label": "API (HTTPS)", "onAutoForward": "silent" },
+    "5000": { "label": "API (HTTP)", "onAutoForward": "silent" }
+  },
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit",
+        "ms-dotnettools.csharp",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  }
+}

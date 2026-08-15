@@ -10,7 +10,8 @@
     "close": "关闭",
     "saveChanges": "保存更改",
     "confirm": "确认",
-    "sections": "板块"
+    "sections": "板块",
+    "serverError": "出了点问题，请稍后重试。"
   },
   "actions": {
     "edit": "编辑",
@@ -881,6 +882,7 @@
     "edit": "编辑",
     "emptyTitle": "您的仪表板为空",
     "emptyDesc": "添加小部件以跟踪您关注的指标和活动。",
+    "chartTotal": "总计",
     "openError": "无法打开该仪表板。",
     "saved": "仪表板已保存",
     "saveError": "无法保存仪表板。",
@@ -899,25 +901,31 @@
     "addDesc": "选择一个小部件添加到您的仪表板。",
     "configure": "配置{{title}}",
     "configureWidget": "配置小部件",
-    "removeWidget": "移除小部件"
+    "removeWidget": "移除小部件",
+    "widthFollows": "此宽度沿用您的全宽布局。在此移动小部件即可单独排列该宽度。",
+    "widthCustom": "此宽度有自己的排列方式。",
+    "widthReset": "沿用全宽布局"
   },
   "widgets": {
-    "stat": { "title": "指标", "desc": "单个核心指标——用户、活动或通知。" },
+    "stat": { "title": "指标", "desc": "带趋势迷你图的单一指标。" },
     "activity": { "title": "活动动态", "desc": "工作区中最近的审计事件。" },
-    "recent": { "title": "最近通知", "desc": "一目了然地查看您的最新通知。" },
-    "line": { "title": "折线图", "desc": "随时间变化的趋势——例如用户注册。" },
-    "area": { "title": "面积图", "desc": "随时间变化的填充趋势。" },
+    "recent": { "title": "最近通知", "desc": "您最新的通知。" },
+    "line": { "title": "折线图", "desc": "随时间变化的趋势 — 例如用户注册量。" },
+    "area": { "title": "面积图", "desc": "随时间变化的填充趋势线。" },
     "bar": { "title": "柱状图", "desc": "比较各类别——例如按角色划分的用户。" },
-    "pie": { "title": "饼图", "desc": "部分与整体的占比。" },
-    "quicklinks": { "title": "快速链接", "desc": "指向应用内页面的自定义快捷方式列表。" },
+    "donut": {
+      "title": "环形图",
+      "desc": "占总量比例的分解图。"
+    },
+    "quicklinks": { "title": "快速链接", "desc": "指向您最常用页面的快捷方式。" },
     "markdown": { "title": "便签", "desc": "自由格式的 Markdown 便签（标题、列表、加粗）。" },
-    "salesStat": { "title": "销售指标", "desc": "核心销售指标——收入、订单、客户或平均订单价值。" },
-    "salesRevenueTrend": { "title": "收入趋势", "desc": "过去六个月实现的收入。" },
+    "salesStat": { "title": "销售指标", "desc": "单一销售指标（收入、订单等）。" },
+    "salesRevenueTrend": { "title": "收入趋势", "desc": "过去六个月的月度收入。" },
     "salesTopProducts": { "title": "热销产品", "desc": "按收入排名的最畅销产品。" },
-    "salesOrderStatus": { "title": "订单状态", "desc": "按状态划分的订单分布。" },
-    "salesRecentOrders": { "title": "最近订单", "desc": "所有客户的最新订单。" },
-    "kpiHero": { "title": "亮点指标", "desc": "在醒目的全彩卡片中展示核心指标。" },
-    "goal": { "title": "目标", "desc": "以环形显示朝目标的进度。" },
+    "salesOrderStatus": { "title": "订单状态", "desc": "按状态划分的订单。" },
+    "salesRecentOrders": { "title": "最近订单", "desc": "最近下的订单。" },
+    "kpiHero": { "title": "KPI 亮点", "desc": "在醒目的品牌卡片中展示的核心指标。" },
+    "goal": { "title": "目标", "desc": "以圆环形式显示目标进度。" },
     "leaderboard": { "title": "排行榜", "desc": "排序条形图——主要角色或活动类别。" },
     "field": {
       "target": "目标值",
@@ -931,9 +939,9 @@
     "opt": {
       "totalUsers": "用户总数",
       "newUsersThisWeek": "本周新增用户",
-      "auditToday": "今日活动",
+      "auditToday": "今日事件",
       "unreadNotifications": "未读通知",
-      "signups": "用户注册（30 天）",
+      "signups": "注册量随时间变化",
       "usersByRole": "按角色划分的用户",
       "auditByCategory": "按类别划分的活动",
       "revenue": "收入",
@@ -1108,7 +1116,7 @@
     },
     "brand": {
       "tagline": "以 AI 的速度构建业务应用。",
-      "subtitle": "一个现代的 ASP.NET Core + React 起始模板，首次运行即如同 2026 年的产品——认证、角色、审计和精美界面，开箱即用。",
+      "subtitle": "一个现代的 ASP.NET Core + React 起始模板，首次运行即如同 {{year}} 年的产品——认证、角色、审计和精美界面，开箱即用。",
       "feature1": "默认安全——双重验证、会话、全面审计",
       "feature2": "用一个提示即可扩展整个功能",
       "feature3": "从第一次提交起即支持深色模式、i18n 和 RTL"

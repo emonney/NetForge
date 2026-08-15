@@ -366,3 +366,6 @@ App_Data/
 *.db
 *.db-shm
 *.db-wal
+
+# Project temporary files
+stuff/

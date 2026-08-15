@@ -25,7 +25,8 @@ export function Brand({
     tone === 'onDark' ? 'bg-white/10 text-white' : 'bg-primary text-primary-foreground';
 
   return (
-    <span className={cn('inline-flex items-center gap-2 font-semibold tracking-tight', className)}>
+    // `min-w-0` so a long white-label tenant name ellipsizes here instead of spilling past the shell.
+    <span className={cn('inline-flex min-w-0 items-center gap-2 font-semibold tracking-tight', className)}>
       {logoUrl ? (
         <img src={logoUrl} alt="" className="size-7 shrink-0 rounded-lg object-cover" />
       ) : (

@@ -47,10 +47,12 @@ internal sealed class TenantConfig : IEntityTypeConfiguration<Tenant>
         // The platform default tenant always exists — every user/row references it, and single-tenant
         // mode only ever uses it. Seeded via the model so it's present after migration in prod too,
         // not only under the dev seeders. Fixed CreatedAt keeps the migration deterministic.
+        // Named after the product (not "Default"): the shell white-labels from the active tenant, so this
+        // row *is* the product identity — renaming it (or giving it a logo) rebrands the app's own header.
         builder.HasData(new Tenant
         {
             Id = TenancyOptions.DefaultTenant,
-            Name = "Default",
+            Name = "NetForge",
             Status = TenantStatus.Active,
             CreatedAt = new DateTimeOffset(2026, 1, 1, 0, 0, 0, TimeSpan.Zero),
         });

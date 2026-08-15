@@ -519,7 +519,7 @@ namespace NetForge.Server.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Tenants",
                 columns: new[] { "Id", "CreatedAt", "LogoUrl", "Name", "PrimaryColor", "Status" },
-                values: new object[] { "default", 639028224000000000L, null, "Default", null, "Active" });
+                values: new object[] { "default", 639028224000000000L, null, "NetForge", null, "Active" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

@@ -7,6 +7,7 @@
     <Build />
     <Deploy />
   </Project>
+
   <!-- DefaultStartup makes VS pick the ASP.NET Core host as the run target on first open (F5),
        instead of defaulting to the .esproj client. Fixes it for the native 'Create a new project'
        dialog too (our extension wizard can't reach that path). -->

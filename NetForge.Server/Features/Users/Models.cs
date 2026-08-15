@@ -6,6 +6,7 @@ public record UserDto(
     string Id,
     string Email,
     string? DisplayName,
+    string? AvatarUrl,
     bool EmailConfirmed,
     bool TwoFactorEnabled,
     bool LockedOut,

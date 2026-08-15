@@ -30,6 +30,13 @@ React SPA, with auth, role-based permissions, an admin console, settings, and th
 3. **Permissions:** add constants in `{Domain}/Permissions.cs`, gate endpoints with `.RequirePermission(...)`,
    assign via `/admin/roles`.
 
+## Extend, don't duplicate
+
+Reuse the platform you were scaffolded with. Add widgets to the **existing** dashboard via the widget registry
+(`client/src/widgets/`) — never a second dashboard or a parallel nav entry. Extend the existing nav, settings,
+data-grid, auth, and audit instead of building parallel versions. Turn on capabilities like multi-tenancy by
+**marking** an entity (`ITenantScoped`), not by re-implementing them.
+
 ## Conventions
 
 - **C#:** `PascalCase` types/members, `_camelCase` private fields, records for DTOs, manual mapping (no AutoMapper).
@@ -40,9 +47,10 @@ React SPA, with auth, role-based permissions, an admin console, settings, and th
 
 ## The UI/UX bar (non-negotiable)
 
-A feature isn't done until: a **designed loading state** (skeleton, not a spinner), a **designed empty state**
-(icon + headline + action), a **designed error state** (plain language + retry), a **verified mobile layout**,
-**dark-mode parity**, and **keyboard navigation**. If you can't hit all six, cut scope rather than ship thin.
+Every feature ships with: a **loading state** (skeleton, not a spinner), an **empty state** (icon + headline +
+action), an **error state** (plain language + retry), a **responsive mobile layout** (drawer nav, card lists,
+≥44px targets), **dark-mode parity** (theme tokens, not hard-coded colors), and **keyboard access** (visible
+focus, Escape/Enter). Build these into the components; if you can't cover all six, cut scope rather than ship thin.
 
 ## Don't
 

@@ -10,7 +10,8 @@
     "close": "Fermer",
     "saveChanges": "Enregistrer",
     "confirm": "Confirmer",
-    "sections": "Sections"
+    "sections": "Sections",
+    "serverError": "Un problème est survenu. Veuillez réessayer dans un instant."
   },
   "actions": {
     "edit": "Modifier",
@@ -881,6 +882,7 @@
     "edit": "Modifier",
     "emptyTitle": "Votre tableau de bord est vide",
     "emptyDesc": "Ajoutez des widgets pour suivre les métriques et l'activité qui comptent pour vous.",
+    "chartTotal": "Total",
     "openError": "Impossible d'ouvrir ce tableau de bord.",
     "saved": "Tableau de bord enregistré",
     "saveError": "Impossible d'enregistrer le tableau de bord.",
@@ -899,25 +901,31 @@
     "addDesc": "Choisissez un widget à déposer sur votre tableau de bord.",
     "configure": "Configurer {{title}}",
     "configureWidget": "Configurer le widget",
-    "removeWidget": "Retirer le widget"
+    "removeWidget": "Retirer le widget",
+    "widthFollows": "Cette largeur suit votre disposition pleine largeur. Déplacez un widget ici pour organiser cette largeur séparément.",
+    "widthCustom": "Cette largeur a sa propre disposition.",
+    "widthReset": "Suivre la disposition pleine largeur"
   },
   "widgets": {
-    "stat": { "title": "Métrique", "desc": "Une seule métrique clé — utilisateurs, activité ou notifications." },
+    "stat": { "title": "Métrique", "desc": "Une seule métrique avec une mini-courbe de tendance." },
     "activity": { "title": "Fil d'activité", "desc": "Les événements d'audit les plus récents de l'espace de travail." },
-    "recent": { "title": "Notifications récentes", "desc": "Vos dernières notifications en un coup d'œil." },
-    "line": { "title": "Graphique linéaire", "desc": "Une tendance dans le temps — p. ex. les inscriptions." },
-    "area": { "title": "Graphique en aires", "desc": "Une tendance remplie dans le temps." },
+    "recent": { "title": "Notifications récentes", "desc": "Vos dernières notifications." },
+    "line": { "title": "Graphique linéaire", "desc": "Une tendance dans le temps — par ex. les inscriptions." },
+    "area": { "title": "Graphique en aires", "desc": "Une courbe de tendance remplie dans le temps." },
     "bar": { "title": "Graphique à barres", "desc": "Comparez des catégories — p. ex. utilisateurs par rôle." },
-    "pie": { "title": "Graphique circulaire", "desc": "Une répartition partie-tout." },
-    "quicklinks": { "title": "Liens rapides", "desc": "Une liste personnalisée de raccourcis vers des pages de l'app." },
+    "donut": {
+      "title": "Graphique en anneau",
+      "desc": "Une répartition en part du total."
+    },
+    "quicklinks": { "title": "Liens rapides", "desc": "Raccourcis vers les pages que vous utilisez le plus." },
     "markdown": { "title": "Note", "desc": "Une note Markdown libre (titres, listes, gras)." },
-    "salesStat": { "title": "Métrique des ventes", "desc": "Une métrique clé des ventes — chiffre d'affaires, commandes, clients ou panier moyen." },
-    "salesRevenueTrend": { "title": "Tendance du chiffre d'affaires", "desc": "Chiffre d'affaires réalisé sur les six derniers mois." },
+    "salesStat": { "title": "Métrique des ventes", "desc": "Une seule métrique de vente (revenu, commandes, …)." },
+    "salesRevenueTrend": { "title": "Tendance du chiffre d'affaires", "desc": "Revenu mensuel sur les six derniers mois." },
     "salesTopProducts": { "title": "Meilleurs produits", "desc": "Produits les plus vendus par chiffre d'affaires." },
-    "salesOrderStatus": { "title": "Statut des commandes", "desc": "Répartition des commandes par statut." },
-    "salesRecentOrders": { "title": "Commandes récentes", "desc": "Les dernières commandes de tous les clients." },
-    "kpiHero": { "title": "Point clé", "desc": "Une métrique phare dans une carte colorée et audacieuse." },
-    "goal": { "title": "Objectif", "desc": "Progression vers une cible, sous forme d'anneau." },
+    "salesOrderStatus": { "title": "Statut des commandes", "desc": "Commandes par statut." },
+    "salesRecentOrders": { "title": "Commandes récentes", "desc": "Les dernières commandes passées." },
+    "kpiHero": { "title": "KPI vedette", "desc": "Une métrique phare dans une carte marquante aux couleurs de la marque." },
+    "goal": { "title": "Objectif", "desc": "Progression vers un objectif, sous forme d'anneau." },
     "leaderboard": { "title": "Classement", "desc": "Barres classées : principaux rôles ou catégories d'activité." },
     "field": {
       "target": "Cible",
@@ -931,9 +939,9 @@
     "opt": {
       "totalUsers": "Total des utilisateurs",
       "newUsersThisWeek": "Nouveaux utilisateurs cette semaine",
-      "auditToday": "Activité du jour",
+      "auditToday": "Événements aujourd'hui",
       "unreadNotifications": "Notifications non lues",
-      "signups": "Inscriptions (30 jours)",
+      "signups": "Inscriptions dans le temps",
       "usersByRole": "Utilisateurs par rôle",
       "auditByCategory": "Activité par catégorie",
       "revenue": "Chiffre d'affaires",
@@ -1108,7 +1116,7 @@
     },
     "brand": {
       "tagline": "Créez des applications métier à la vitesse de l'IA.",
-      "subtitle": "Un starter moderne ASP.NET Core + React qui ressemble à un produit de 2026 dès le premier lancement — auth, rôles, audit et une belle interface, clés en main.",
+      "subtitle": "Un starter moderne ASP.NET Core + React qui ressemble à un produit de {{year}} dès le premier lancement — auth, rôles, audit et une belle interface, clés en main.",
       "feature1": "Sécurisé par défaut — 2FA, sessions, entièrement audité",
       "feature2": "Étendez toute une fonctionnalité avec un seul prompt",
       "feature3": "Mode sombre, i18n et RTL dès le premier commit"

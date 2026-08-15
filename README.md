@@ -26,6 +26,8 @@
 
 This is the free, **MIT-licensed Community edition**. It's a complete, production-ready single-team starter on its own — auth, RBAC, theming, i18n/RTL, the DataGrid + form layers, and the whole AI-extensible architecture. When your app grows into the product layer most SaaS eventually needs, [**NetForge Pro**](#community-vs-pro) adds it so you don't build it twice.
 
+> **Don't want to build it by hand?** Describe your app in plain language and **NetForge's AI builds it for you** — with a real senior developer backing every build, free with every plan. AI-built or hand-configured, the result is this same standard ASP.NET Core + React/Angular codebase on the database you choose — yours to download and host anywhere, no lock-in. Start at **[netforge.ebenmonney.com/ai](https://netforge.ebenmonney.com/ai)**.
+
 ```bash
 dotnet run --project NetForge.Server   # SpaProxy auto-starts the React client too
 # → https://localhost:3000   ·   admin@netforge.local / Admin123!$

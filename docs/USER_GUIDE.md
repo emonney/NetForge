@@ -179,8 +179,10 @@ template (the accent comes from `App:BrandColor`).
 Three ways to create a project, all driving the same options:
 
 - **CLI wizard** (easiest) — `dotnet tool install -g NetForge.Cli`, then `netforge new` walks you through edition, database, features, OAuth, and theme, resolves feature dependencies, and runs `dotnet new` for you. Scriptable too: `netforge new -n MyApp --tier basic --with dashboard,webhooks --yes` (or `--dry-run`).
-- **Raw template** — the free Basic edition is `dotnet new install NetForge.Templates`, then `dotnet new netforge -n MyApp`. The full Pro template (`NetForge.Pro.Templates`, with the `--tier`/feature/database flags below) installs from the sponsor-gated feed (see the configurator).
+- **Raw template** — the free Basic edition is `dotnet new install NetForge.Templates`, then `dotnet new netforge -n MyApp`. The full Pro template (`NetForge.Pro.Templates`, with the `--tier`/feature/database flags below) installs from the Pro feed — [sign in and get a Pro plan](https://netforge.ebenmonney.com) and your CLI feed token + install command are on your dashboard.
 - **Online configurator** — pick features visually at <https://netforge.ebenmonney.com> and download a ZIP.
+
+> **Prefer not to scaffold at all?** Describe your app in plain language and NetForge's AI builds the whole thing for you — and a real senior developer backs every build, free with every plan. Configure it yourself or let AI build it; either way you download a standard ASP.NET Core + React/Angular app on the database you chose, with no lock-in. Start at <https://netforge.ebenmonney.com/ai>.
 
 The options map 1:1 across all three:
 
@@ -413,7 +415,14 @@ log's detail panel — a chronological feed of everything that happened to that 
 
 ### 8.8 Dashboard (home)
 The home screen is a **customizable widget dashboard**. Hit **Edit** to **drag, resize, add, configure,
-and remove** widgets on a responsive grid (it reflows to a single column on phones), then **Save**.
+and remove** widgets on a responsive grid, then **Save**. The grid reflows as the window narrows — your
+full-width arrangement while there's room for it, then an even two-up, then a single column on phones.
+
+**Every width is editable.** By default a narrow width just follows your full-width layout, so you only
+have to arrange things once. But arrange a narrow width by hand and it's **saved separately** — phones
+and tablets can order and size widgets differently from the desktop, and editing one never disturbs the
+other. Edit mode says which of the two states the current width is in, and offers a one-click
+**"Follow the full-width layout"** to hand a width back to the automatic arrangement.
 Keep **multiple named dashboards** and switch between them from the dropdown — set one as your
 **default**, rename, copy, or delete. Your layout is saved to your account; the first time you visit you
 get a sensible **starter dashboard** tailored to your permissions.
@@ -496,7 +505,9 @@ single-tenant developers see no "tenant" anywhere. Flip it with one config setti
 
 Once on:
 - **Tenant catalog** — `/admin/tenants` (host admins, `tenants.*`) lists, creates, and edits tenants;
-  each has a name, status (Active/Suspended), **brand colour**, and logo. The default tenant can't be deleted.
+  each has a name, status (Active/Suspended), **brand colour**, and logo. Those three white-label the shell
+  for whoever is in that tenant — including the default one, which is your own product identity, so editing
+  it rebrands the app itself. The default tenant can't be deleted.
 - **Per-tenant roles** — a user's roles are scoped to a tenant. The same person can be Admin in one tenant
   and a read-only member in another; their permissions re-project the moment they switch. Role *definitions*
   (in `/admin/roles`) are shared; the *assignment* is per-tenant, managed on each tenant's detail page.

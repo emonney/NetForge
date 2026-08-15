@@ -10,7 +10,8 @@
     "close": "Close",
     "saveChanges": "Save changes",
     "confirm": "Confirm",
-    "sections": "Sections"
+    "sections": "Sections",
+    "serverError": "Something went wrong. Please try again in a moment."
   },
   "actions": {
     "edit": "Edit",
@@ -881,6 +882,7 @@
     "edit": "Edit",
     "emptyTitle": "Your dashboard is empty",
     "emptyDesc": "Add widgets to track the metrics and activity that matter to you.",
+    "chartTotal": "Total",
     "openError": "Could not open that dashboard.",
     "saved": "Dashboard saved",
     "saveError": "Could not save the dashboard.",
@@ -899,25 +901,31 @@
     "addDesc": "Pick a widget to drop onto your dashboard.",
     "configure": "Configure {{title}}",
     "configureWidget": "Configure widget",
-    "removeWidget": "Remove widget"
+    "removeWidget": "Remove widget",
+    "widthFollows": "This width follows your full-width layout. Move a widget here to arrange this width on its own.",
+    "widthCustom": "This width has its own arrangement.",
+    "widthReset": "Follow the full-width layout"
   },
   "widgets": {
-    "stat": { "title": "Stat", "desc": "A single headline metric — users, activity, or notifications." },
+    "stat": { "title": "Stat", "desc": "A single metric with a trend sparkline." },
     "activity": { "title": "Activity feed", "desc": "The most recent audit events across the workspace." },
-    "recent": { "title": "Recent notifications", "desc": "Your latest notifications at a glance." },
-    "line": { "title": "Line chart", "desc": "A trend over time — e.g. user signups." },
-    "area": { "title": "Area chart", "desc": "A filled trend over time." },
+    "recent": { "title": "Recent notifications", "desc": "Your latest notifications." },
+    "line": { "title": "Line chart", "desc": "A trend over time — e.g. user sign-ups." },
+    "area": { "title": "Area chart", "desc": "A filled trend line over time." },
     "bar": { "title": "Bar chart", "desc": "Compare categories — e.g. users by role." },
-    "pie": { "title": "Pie chart", "desc": "A part-to-whole breakdown." },
-    "quicklinks": { "title": "Quick links", "desc": "A custom list of shortcuts to in-app pages." },
+    "donut": {
+      "title": "Donut chart",
+      "desc": "A share-of-total breakdown."
+    },
+    "quicklinks": { "title": "Quick links", "desc": "Shortcuts to the pages you use most." },
     "markdown": { "title": "Note", "desc": "A free-form Markdown note (headings, lists, bold)." },
-    "salesStat": { "title": "Sales stat", "desc": "A headline sales metric — revenue, orders, customers, or average order value." },
-    "salesRevenueTrend": { "title": "Revenue trend", "desc": "Realized revenue over the last six months." },
+    "salesStat": { "title": "Sales stat", "desc": "A single sales metric (revenue, orders, …)." },
+    "salesRevenueTrend": { "title": "Revenue trend", "desc": "Monthly revenue over the last six months." },
     "salesTopProducts": { "title": "Top products", "desc": "Best-selling products by revenue." },
-    "salesOrderStatus": { "title": "Order status", "desc": "Breakdown of orders by status." },
-    "salesRecentOrders": { "title": "Recent orders", "desc": "The latest orders across all customers." },
-    "kpiHero": { "title": "Highlight", "desc": "A headline metric in a bold, full-color card." },
-    "goal": { "title": "Goal", "desc": "Progress toward a target, shown as a ring." },
+    "salesOrderStatus": { "title": "Order status", "desc": "Orders by status." },
+    "salesRecentOrders": { "title": "Recent orders", "desc": "The latest orders placed." },
+    "kpiHero": { "title": "KPI hero", "desc": "A headline metric in a bold, branded card." },
+    "goal": { "title": "Goal", "desc": "Progress toward a target, as a ring." },
     "leaderboard": { "title": "Leaderboard", "desc": "Ranked bars — top roles or activity categories." },
     "field": {
       "target": "Target",
@@ -931,9 +939,9 @@
     "opt": {
       "totalUsers": "Total users",
       "newUsersThisWeek": "New users this week",
-      "auditToday": "Today's activity",
+      "auditToday": "Events today",
       "unreadNotifications": "Unread notifications",
-      "signups": "User signups (30 days)",
+      "signups": "Sign-ups over time",
       "usersByRole": "Users by role",
       "auditByCategory": "Activity by category",
       "revenue": "Revenue",
@@ -1108,7 +1116,7 @@
     },
     "brand": {
       "tagline": "Build line-of-business apps at AI speed.",
-      "subtitle": "A modern ASP.NET Core + React starter that looks like a 2026 product on first run — auth, roles, audit, and beautiful UI, out of the box.",
+      "subtitle": "A modern ASP.NET Core + React starter that looks like a {{year}} product on first run — auth, roles, audit, and beautiful UI, out of the box.",
       "feature1": "Secure by default — 2FA, sessions, fully audited",
       "feature2": "Extend a whole feature with a single prompt",
       "feature3": "Dark mode, i18n, and RTL from the first commit"

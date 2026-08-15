@@ -908,7 +908,7 @@ namespace NetForge.Server.Data.Migrations
                         {
                             Id = "default",
                             CreatedAt = 639028224000000000L,
-                            Name = "Default",
+                            Name = "NetForge",
                             Status = "Active"
                         });
                 });

@@ -1,0 +1,29 @@
+using Microsoft.EntityFrameworkCore;
+
+namespace NetForge.Server.Data.Seed;
+
+/// <summary>
+/// Creates/migrates the schema and seeds the initial data. Shared by app boot (Program.cs) and the demo
+/// factory-reset (<see cref="NetForge.Server.Features.Sales.DemoMaintenance"/>) so the two can't drift —
+/// a factory reset must reproduce exactly what a fresh boot seeds. The conditional comment guards keep the
+/// per-tier seeders (MultiTenant / Demo) out of trimmed scaffolds, exactly as they were in Program.cs.
+/// </summary>
+public static class DatabaseSeeder
+{
+    public static async Task SeedAsync(IServiceProvider services, IConfiguration config, IHostEnvironment env)
+    {
+        var db = services.GetRequiredService<AppDbContext>();
+        // SQLite ships migrations (full history); the server providers create the schema from the model.
+        if (db.Database.IsSqlite()) db.Database.Migrate();
+        else db.Database.EnsureCreated();
+
+        await IdentitySeeder.SeedAsync(services);
+
+        // Demo content (extra users + the Sales sample data) is opt-in: always in Development, or anywhere
+        // "Seed:DemoData" is true (e.g. the public demo site).
+        if (env.IsDevelopment() || config.GetValue<bool>("Seed:DemoData"))
+        {
+            await DemoUsersSeeder.SeedAsync(services);
+        }
+    }
+}
