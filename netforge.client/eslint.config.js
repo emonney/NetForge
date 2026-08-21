@@ -39,6 +39,7 @@ export default defineConfig([
       'src/components/app/nav.tsx',
       'src/components/app/shell-brand.tsx',
       'src/pages/(app)/_layout.tsx',
+      'src/pages/(auth)/_layout.tsx',
     ],
     rules: {
       'prefer-const': 'off',

@@ -1,5 +1,4 @@
 import { Brand } from '@/components/brand';
-import { cn } from '@/lib/utils';
 
 /**
  * The brand lockup in the app shell. White-label: in multi-tenant mode it shows the active tenant's name +

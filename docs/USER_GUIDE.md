@@ -469,7 +469,10 @@ A complete example line-of-business domain under **Sales** in the sidebar — th
 feature looks built on NetForge's primitives. It's gated by per-area permissions (`orders.*`,
 `products.*`, `categories.*`, `customers.*`), so each screen appears only for users who can use it, and a
 Bogus seeder fills it with realistic demo data on first run (delete `Features/Sales` + its one line in
-`Program.cs` to remove the demo).
+`Program.cs` to remove the demo). Real imagery comes with it: drop photos under
+`NetForge.Server/SeedAssets/products/{SKU}/` and the seeder uploads them through the blob store on a fresh
+database, so the catalog has pictures without anyone uploading by hand — same for
+`SeedAssets/users/admin.jpg`, the seeded admin's profile picture. See that folder's `README.md`.
 
 - **Orders** — the centre of the domain. Build an order by picking a customer and adding product lines
   (with a live total preview); the server snapshots each product's price and computes subtotal, tax, and

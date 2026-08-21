@@ -27,13 +27,15 @@ export function AppTopbar() {
       {tenantSwitcher}
 
       {/* Prominent, centred search — the multi-purpose command palette (VS Code-style). */}
-      <div className="flex min-w-0 flex-1 justify-center px-1 sm:px-2">
+      {/* min-w-9 keeps the collapsed icon-only trigger at its natural size on a phone; without it the
+          flex-1 track shrinks past the button and it spills over the control cluster beside it. */}
+      <div className="flex min-w-9 flex-1 justify-center px-1 sm:px-2">
         <span data-tour="command" className="w-full max-w-md">
           {commandPalette}
         </span>
       </div>
 
-      <div className="flex items-center gap-0.5 sm:gap-1">
+      <div className="flex shrink-0 items-center gap-0.5 sm:gap-1">
         {whatsNew}
         {notificationBell}
         <LanguageToggle />

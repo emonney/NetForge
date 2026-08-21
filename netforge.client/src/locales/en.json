@@ -440,6 +440,27 @@
     "doneTitle": "You're all set",
     "doneDesc": "Explore at your own pace. Start by adding a widget to your dashboard or browsing the demo data."
   },
+  "promo": {
+    "ribbon": {
+      "lead": "This demo is the NetForge starter itself.",
+      "detail": "Configure it, download it, host it anywhere — the AI builder is optional."
+    },
+    "banner": {
+      "title": "This is the NetForge starter — and it's yours to own.",
+      "body": "Pick the features you want and download a standard ASP.NET Core + React app on the database you choose, then host it anywhere. No AI required.",
+      "aiLead": "Prefer to describe your app instead?",
+      "aiBody": "NetForge AI builds on this very starter, tuned for the stack — and a real developer is there to help whenever you need it, at no extra cost."
+    },
+    "cta": {
+      "configure": "Configure & download",
+      "ai": "Build it with AI"
+    },
+    "dismiss": "Hide this message",
+    "tour": {
+      "title": "Make it yours",
+      "desc": "Everything you just toured ships in the NetForge starter — configure it, download it, and it's a standard ASP.NET Core + React app on the database you pick. NetForge AI is an optional shortcut on the same starter: use it to tailor the template before you download, or to build (and even host) your whole app with an AI tuned for this exact stack."
+    }
+  },
   "profile": {
     "title": "Account settings",
     "subtitle": "Manage your profile, security, and sessions.",
@@ -907,26 +928,74 @@
     "widthReset": "Follow the full-width layout"
   },
   "widgets": {
-    "stat": { "title": "Stat", "desc": "A single metric with a trend sparkline." },
-    "activity": { "title": "Activity feed", "desc": "The most recent audit events across the workspace." },
-    "recent": { "title": "Recent notifications", "desc": "Your latest notifications." },
-    "line": { "title": "Line chart", "desc": "A trend over time — e.g. user sign-ups." },
-    "area": { "title": "Area chart", "desc": "A filled trend line over time." },
-    "bar": { "title": "Bar chart", "desc": "Compare categories — e.g. users by role." },
+    "stat": {
+      "title": "Stat",
+      "desc": "A single metric with a trend sparkline."
+    },
+    "activity": {
+      "title": "Activity feed",
+      "desc": "The most recent audit events across the workspace."
+    },
+    "recent": {
+      "title": "Recent notifications",
+      "desc": "Your latest notifications."
+    },
+    "line": {
+      "title": "Line chart",
+      "desc": "A trend over time — e.g. user sign-ups."
+    },
+    "area": {
+      "title": "Area chart",
+      "desc": "A filled trend line over time."
+    },
+    "bar": {
+      "title": "Bar chart",
+      "desc": "Compare categories — e.g. users by role."
+    },
     "donut": {
       "title": "Donut chart",
       "desc": "A share-of-total breakdown."
     },
-    "quicklinks": { "title": "Quick links", "desc": "Shortcuts to the pages you use most." },
-    "markdown": { "title": "Note", "desc": "A free-form Markdown note (headings, lists, bold)." },
-    "salesStat": { "title": "Sales stat", "desc": "A single sales metric (revenue, orders, …)." },
-    "salesRevenueTrend": { "title": "Revenue trend", "desc": "Monthly revenue over the last six months." },
-    "salesTopProducts": { "title": "Top products", "desc": "Best-selling products by revenue." },
-    "salesOrderStatus": { "title": "Order status", "desc": "Orders by status." },
-    "salesRecentOrders": { "title": "Recent orders", "desc": "The latest orders placed." },
-    "kpiHero": { "title": "KPI hero", "desc": "A headline metric in a bold, branded card." },
-    "goal": { "title": "Goal", "desc": "Progress toward a target, as a ring." },
-    "leaderboard": { "title": "Leaderboard", "desc": "Ranked bars — top roles or activity categories." },
+    "quicklinks": {
+      "title": "Quick links",
+      "desc": "Shortcuts to the pages you use most."
+    },
+    "markdown": {
+      "title": "Note",
+      "desc": "A free-form Markdown note (headings, lists, bold)."
+    },
+    "salesStat": {
+      "title": "Sales stat",
+      "desc": "A single sales metric (revenue, orders, …)."
+    },
+    "salesRevenueTrend": {
+      "title": "Revenue trend",
+      "desc": "Monthly revenue over the last six months."
+    },
+    "salesTopProducts": {
+      "title": "Top products",
+      "desc": "Best-selling products by revenue."
+    },
+    "salesOrderStatus": {
+      "title": "Order status",
+      "desc": "Orders by status."
+    },
+    "salesRecentOrders": {
+      "title": "Recent orders",
+      "desc": "The latest orders placed."
+    },
+    "kpiHero": {
+      "title": "KPI hero",
+      "desc": "A headline metric in a bold, branded card."
+    },
+    "goal": {
+      "title": "Goal",
+      "desc": "Progress toward a target, as a ring."
+    },
+    "leaderboard": {
+      "title": "Leaderboard",
+      "desc": "Ranked bars — top roles or activity categories."
+    },
     "field": {
       "target": "Target",
       "metric": "Metric",

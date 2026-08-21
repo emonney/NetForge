@@ -440,6 +440,27 @@
     "doneTitle": "Tout est prêt",
     "doneDesc": "Explorez à votre rythme. Commencez par ajouter un widget à votre tableau de bord ou parcourez les données de démo."
   },
+  "promo": {
+    "ribbon": {
+      "lead": "Cette démo est le starter NetForge lui-même.",
+      "detail": "Configurez-le, téléchargez-le, hébergez-le où vous voulez — l'IA est facultative."
+    },
+    "banner": {
+      "title": "Voici le starter NetForge — et il est à vous.",
+      "body": "Choisissez les fonctionnalités qui vous intéressent et téléchargez une application ASP.NET Core + React standard, avec la base de données de votre choix, à héberger où bon vous semble. Sans IA.",
+      "aiLead": "Vous préférez décrire votre application ?",
+      "aiBody": "L'IA NetForge s'appuie sur ce même starter, optimisée pour la stack — et un vrai développeur vous accompagne dès que vous en avez besoin, sans supplément."
+    },
+    "cta": {
+      "configure": "Configurer et télécharger",
+      "ai": "Créer avec l'IA"
+    },
+    "dismiss": "Masquer ce message",
+    "tour": {
+      "title": "Faites-en le vôtre",
+      "desc": "Tout ce que vous venez de parcourir est fourni avec le starter NetForge : configurez-le, téléchargez-le, et vous obtenez une application ASP.NET Core + React standard, sur la base de données de votre choix. L'IA NetForge est un raccourci facultatif sur ce même starter : utilisez-la pour adapter le modèle avant de le télécharger, ou pour construire (et même héberger) toute votre application avec une IA calibrée pour cette stack."
+    }
+  },
   "profile": {
     "title": "Paramètres du compte",
     "subtitle": "Gérez votre profil, votre sécurité et vos sessions.",
@@ -907,26 +928,74 @@
     "widthReset": "Suivre la disposition pleine largeur"
   },
   "widgets": {
-    "stat": { "title": "Métrique", "desc": "Une seule métrique avec une mini-courbe de tendance." },
-    "activity": { "title": "Fil d'activité", "desc": "Les événements d'audit les plus récents de l'espace de travail." },
-    "recent": { "title": "Notifications récentes", "desc": "Vos dernières notifications." },
-    "line": { "title": "Graphique linéaire", "desc": "Une tendance dans le temps — par ex. les inscriptions." },
-    "area": { "title": "Graphique en aires", "desc": "Une courbe de tendance remplie dans le temps." },
-    "bar": { "title": "Graphique à barres", "desc": "Comparez des catégories — p. ex. utilisateurs par rôle." },
+    "stat": {
+      "title": "Métrique",
+      "desc": "Une seule métrique avec une mini-courbe de tendance."
+    },
+    "activity": {
+      "title": "Fil d'activité",
+      "desc": "Les événements d'audit les plus récents de l'espace de travail."
+    },
+    "recent": {
+      "title": "Notifications récentes",
+      "desc": "Vos dernières notifications."
+    },
+    "line": {
+      "title": "Graphique linéaire",
+      "desc": "Une tendance dans le temps — par ex. les inscriptions."
+    },
+    "area": {
+      "title": "Graphique en aires",
+      "desc": "Une courbe de tendance remplie dans le temps."
+    },
+    "bar": {
+      "title": "Graphique à barres",
+      "desc": "Comparez des catégories — p. ex. utilisateurs par rôle."
+    },
     "donut": {
       "title": "Graphique en anneau",
       "desc": "Une répartition en part du total."
     },
-    "quicklinks": { "title": "Liens rapides", "desc": "Raccourcis vers les pages que vous utilisez le plus." },
-    "markdown": { "title": "Note", "desc": "Une note Markdown libre (titres, listes, gras)." },
-    "salesStat": { "title": "Métrique des ventes", "desc": "Une seule métrique de vente (revenu, commandes, …)." },
-    "salesRevenueTrend": { "title": "Tendance du chiffre d'affaires", "desc": "Revenu mensuel sur les six derniers mois." },
-    "salesTopProducts": { "title": "Meilleurs produits", "desc": "Produits les plus vendus par chiffre d'affaires." },
-    "salesOrderStatus": { "title": "Statut des commandes", "desc": "Commandes par statut." },
-    "salesRecentOrders": { "title": "Commandes récentes", "desc": "Les dernières commandes passées." },
-    "kpiHero": { "title": "KPI vedette", "desc": "Une métrique phare dans une carte marquante aux couleurs de la marque." },
-    "goal": { "title": "Objectif", "desc": "Progression vers un objectif, sous forme d'anneau." },
-    "leaderboard": { "title": "Classement", "desc": "Barres classées : principaux rôles ou catégories d'activité." },
+    "quicklinks": {
+      "title": "Liens rapides",
+      "desc": "Raccourcis vers les pages que vous utilisez le plus."
+    },
+    "markdown": {
+      "title": "Note",
+      "desc": "Une note Markdown libre (titres, listes, gras)."
+    },
+    "salesStat": {
+      "title": "Métrique des ventes",
+      "desc": "Une seule métrique de vente (revenu, commandes, …)."
+    },
+    "salesRevenueTrend": {
+      "title": "Tendance du chiffre d'affaires",
+      "desc": "Revenu mensuel sur les six derniers mois."
+    },
+    "salesTopProducts": {
+      "title": "Meilleurs produits",
+      "desc": "Produits les plus vendus par chiffre d'affaires."
+    },
+    "salesOrderStatus": {
+      "title": "Statut des commandes",
+      "desc": "Commandes par statut."
+    },
+    "salesRecentOrders": {
+      "title": "Commandes récentes",
+      "desc": "Les dernières commandes passées."
+    },
+    "kpiHero": {
+      "title": "KPI vedette",
+      "desc": "Une métrique phare dans une carte marquante aux couleurs de la marque."
+    },
+    "goal": {
+      "title": "Objectif",
+      "desc": "Progression vers un objectif, sous forme d'anneau."
+    },
+    "leaderboard": {
+      "title": "Classement",
+      "desc": "Barres classées : principaux rôles ou catégories d'activité."
+    },
     "field": {
       "target": "Cible",
       "metric": "Métrique",

@@ -440,6 +440,27 @@
     "doneTitle": "一切就绪",
     "doneDesc": "按您的节奏探索。先从向仪表板添加小部件或浏览演示数据开始吧。"
   },
+  "promo": {
+    "ribbon": {
+      "lead": "这个演示本身就是 NetForge 模板。",
+      "detail": "配置、下载，随处部署——AI 构建器只是可选项。"
+    },
+    "banner": {
+      "title": "这就是 NetForge 模板，而它属于你。",
+      "body": "挑选你需要的功能，下载一个标准的 ASP.NET Core + React 应用，数据库任你选择，随处部署。完全不需要 AI。",
+      "aiLead": "更想直接描述你的应用？",
+      "aiBody": "NetForge AI 基于同一套模板构建，并针对该技术栈做过优化；还有真人开发者随时提供帮助，不另收费。"
+    },
+    "cta": {
+      "configure": "配置并下载",
+      "ai": "用 AI 构建"
+    },
+    "dismiss": "隐藏此消息",
+    "tour": {
+      "title": "把它变成你的",
+      "desc": "你刚刚浏览的一切都包含在 NetForge 模板中——配置、下载，即可得到一个标准的 ASP.NET Core + React 应用，数据库由你选择。NetForge AI 是同一套模板之上的可选捷径：既可以在下载前用它调整模板，也可以让这个熟悉该技术栈的 AI 构建（甚至托管）你的整个应用。"
+    }
+  },
   "profile": {
     "title": "账户设置",
     "subtitle": "管理您的个人资料、安全和会话。",
@@ -907,26 +928,74 @@
     "widthReset": "沿用全宽布局"
   },
   "widgets": {
-    "stat": { "title": "指标", "desc": "带趋势迷你图的单一指标。" },
-    "activity": { "title": "活动动态", "desc": "工作区中最近的审计事件。" },
-    "recent": { "title": "最近通知", "desc": "您最新的通知。" },
-    "line": { "title": "折线图", "desc": "随时间变化的趋势 — 例如用户注册量。" },
-    "area": { "title": "面积图", "desc": "随时间变化的填充趋势线。" },
-    "bar": { "title": "柱状图", "desc": "比较各类别——例如按角色划分的用户。" },
+    "stat": {
+      "title": "指标",
+      "desc": "带趋势迷你图的单一指标。"
+    },
+    "activity": {
+      "title": "活动动态",
+      "desc": "工作区中最近的审计事件。"
+    },
+    "recent": {
+      "title": "最近通知",
+      "desc": "您最新的通知。"
+    },
+    "line": {
+      "title": "折线图",
+      "desc": "随时间变化的趋势 — 例如用户注册量。"
+    },
+    "area": {
+      "title": "面积图",
+      "desc": "随时间变化的填充趋势线。"
+    },
+    "bar": {
+      "title": "柱状图",
+      "desc": "比较各类别——例如按角色划分的用户。"
+    },
     "donut": {
       "title": "环形图",
       "desc": "占总量比例的分解图。"
     },
-    "quicklinks": { "title": "快速链接", "desc": "指向您最常用页面的快捷方式。" },
-    "markdown": { "title": "便签", "desc": "自由格式的 Markdown 便签（标题、列表、加粗）。" },
-    "salesStat": { "title": "销售指标", "desc": "单一销售指标（收入、订单等）。" },
-    "salesRevenueTrend": { "title": "收入趋势", "desc": "过去六个月的月度收入。" },
-    "salesTopProducts": { "title": "热销产品", "desc": "按收入排名的最畅销产品。" },
-    "salesOrderStatus": { "title": "订单状态", "desc": "按状态划分的订单。" },
-    "salesRecentOrders": { "title": "最近订单", "desc": "最近下的订单。" },
-    "kpiHero": { "title": "KPI 亮点", "desc": "在醒目的品牌卡片中展示的核心指标。" },
-    "goal": { "title": "目标", "desc": "以圆环形式显示目标进度。" },
-    "leaderboard": { "title": "排行榜", "desc": "排序条形图——主要角色或活动类别。" },
+    "quicklinks": {
+      "title": "快速链接",
+      "desc": "指向您最常用页面的快捷方式。"
+    },
+    "markdown": {
+      "title": "便签",
+      "desc": "自由格式的 Markdown 便签（标题、列表、加粗）。"
+    },
+    "salesStat": {
+      "title": "销售指标",
+      "desc": "单一销售指标（收入、订单等）。"
+    },
+    "salesRevenueTrend": {
+      "title": "收入趋势",
+      "desc": "过去六个月的月度收入。"
+    },
+    "salesTopProducts": {
+      "title": "热销产品",
+      "desc": "按收入排名的最畅销产品。"
+    },
+    "salesOrderStatus": {
+      "title": "订单状态",
+      "desc": "按状态划分的订单。"
+    },
+    "salesRecentOrders": {
+      "title": "最近订单",
+      "desc": "最近下的订单。"
+    },
+    "kpiHero": {
+      "title": "KPI 亮点",
+      "desc": "在醒目的品牌卡片中展示的核心指标。"
+    },
+    "goal": {
+      "title": "目标",
+      "desc": "以圆环形式显示目标进度。"
+    },
+    "leaderboard": {
+      "title": "排行榜",
+      "desc": "排序条形图——主要角色或活动类别。"
+    },
     "field": {
       "target": "目标值",
       "metric": "指标",

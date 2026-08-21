@@ -1,4 +1,4 @@
-import type { ComponentType } from 'react';
+import type { ComponentType, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navigate, Outlet, useSearchParams } from 'react-router';
 import { Globe, ShieldCheck, Zap } from 'lucide-react';
@@ -22,8 +22,13 @@ export default function AuthLayout() {
     return <Navigate to={returnUrl && returnUrl.startsWith('/') ? returnUrl : '/'} replace />;
   }
 
+  // Public-demo pitch. It floats over the page rather than sitting in the layout, so this grid is exactly
+  // what it was before — nothing here reflows whether the card is present or not.
+  let promoBanner: ReactNode = null;
+
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
+      {promoBanner}
       <BrandPanel />
       <div className="relative flex flex-col items-center justify-center px-4 py-12 sm:px-8">
         <div className="absolute end-4 top-4 flex items-center gap-1">

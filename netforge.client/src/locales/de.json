@@ -440,6 +440,27 @@
     "doneTitle": "Alles bereit",
     "doneDesc": "Erkunde in deinem Tempo. Beginne damit, ein Widget zu deinem Dashboard hinzuzufügen oder die Demodaten zu durchstöbern."
   },
+  "promo": {
+    "ribbon": {
+      "lead": "Diese Demo ist der NetForge-Starter selbst.",
+      "detail": "Konfigurieren, herunterladen, überall hosten — der KI-Builder ist optional."
+    },
+    "banner": {
+      "title": "Das ist der NetForge-Starter — und er gehört Ihnen.",
+      "body": "Wählen Sie die gewünschten Funktionen und laden Sie eine gewöhnliche ASP.NET Core- und React-Anwendung mit der Datenbank Ihrer Wahl herunter — hosten Sie sie, wo Sie möchten. Ganz ohne KI.",
+      "aiLead": "Lieber Ihre App einfach beschreiben?",
+      "aiBody": "Die NetForge-KI baut auf genau diesem Starter auf und ist auf den Stack abgestimmt — und ein echter Entwickler hilft Ihnen, wann immer Sie es brauchen, ohne Aufpreis."
+    },
+    "cta": {
+      "configure": "Konfigurieren & herunterladen",
+      "ai": "Mit KI erstellen"
+    },
+    "dismiss": "Diesen Hinweis ausblenden",
+    "tour": {
+      "title": "Machen Sie ihn zu Ihrem",
+      "desc": "Alles, was Sie gerade gesehen haben, steckt im NetForge-Starter — konfigurieren, herunterladen, fertig: eine gewöhnliche ASP.NET Core- und React-Anwendung mit der Datenbank Ihrer Wahl. Die NetForge-KI ist eine optionale Abkürzung auf demselben Starter: Passen Sie die Vorlage damit vor dem Download an oder lassen Sie Ihre gesamte App von einer KI erstellen (und sogar hosten), die genau diesen Stack kennt."
+    }
+  },
   "profile": {
     "title": "Kontoeinstellungen",
     "subtitle": "Verwalte dein Profil, deine Sicherheit und deine Sitzungen.",
@@ -907,26 +928,74 @@
     "widthReset": "Dem Layout in voller Breite folgen"
   },
   "widgets": {
-    "stat": { "title": "Kennzahl", "desc": "Eine einzelne Kennzahl mit einer Trend-Sparkline." },
-    "activity": { "title": "Aktivitäts-Feed", "desc": "Die neuesten Audit-Ereignisse im Arbeitsbereich." },
-    "recent": { "title": "Neueste Benachrichtigungen", "desc": "Deine neuesten Benachrichtigungen." },
-    "line": { "title": "Liniendiagramm", "desc": "Ein Verlauf über die Zeit – z. B. Registrierungen." },
-    "area": { "title": "Flächendiagramm", "desc": "Eine gefüllte Trendlinie über die Zeit." },
-    "bar": { "title": "Balkendiagramm", "desc": "Kategorien vergleichen — z. B. Benutzer nach Rolle." },
+    "stat": {
+      "title": "Kennzahl",
+      "desc": "Eine einzelne Kennzahl mit einer Trend-Sparkline."
+    },
+    "activity": {
+      "title": "Aktivitäts-Feed",
+      "desc": "Die neuesten Audit-Ereignisse im Arbeitsbereich."
+    },
+    "recent": {
+      "title": "Neueste Benachrichtigungen",
+      "desc": "Deine neuesten Benachrichtigungen."
+    },
+    "line": {
+      "title": "Liniendiagramm",
+      "desc": "Ein Verlauf über die Zeit – z. B. Registrierungen."
+    },
+    "area": {
+      "title": "Flächendiagramm",
+      "desc": "Eine gefüllte Trendlinie über die Zeit."
+    },
+    "bar": {
+      "title": "Balkendiagramm",
+      "desc": "Kategorien vergleichen — z. B. Benutzer nach Rolle."
+    },
     "donut": {
       "title": "Ringdiagramm",
       "desc": "Eine Aufschlüsselung als Anteil am Gesamtwert."
     },
-    "quicklinks": { "title": "Schnellzugriffe", "desc": "Verknüpfungen zu den Seiten, die du am häufigsten nutzt." },
-    "markdown": { "title": "Notiz", "desc": "Eine freie Markdown-Notiz (Überschriften, Listen, Fett)." },
-    "salesStat": { "title": "Verkaufskennzahl", "desc": "Eine einzelne Verkaufskennzahl (Umsatz, Bestellungen, …)." },
-    "salesRevenueTrend": { "title": "Umsatztrend", "desc": "Monatlicher Umsatz der letzten sechs Monate." },
-    "salesTopProducts": { "title": "Top-Produkte", "desc": "Meistverkaufte Produkte nach Umsatz." },
-    "salesOrderStatus": { "title": "Bestellstatus", "desc": "Bestellungen nach Status." },
-    "salesRecentOrders": { "title": "Neueste Bestellungen", "desc": "Die zuletzt aufgegebenen Bestellungen." },
-    "kpiHero": { "title": "KPI-Highlight", "desc": "Eine zentrale Kennzahl in einer auffälligen, gebrandeten Karte." },
-    "goal": { "title": "Ziel", "desc": "Fortschritt zu einem Ziel, als Ring." },
-    "leaderboard": { "title": "Rangliste", "desc": "Sortierte Balken – Top-Rollen oder Aktivitätskategorien." },
+    "quicklinks": {
+      "title": "Schnellzugriffe",
+      "desc": "Verknüpfungen zu den Seiten, die du am häufigsten nutzt."
+    },
+    "markdown": {
+      "title": "Notiz",
+      "desc": "Eine freie Markdown-Notiz (Überschriften, Listen, Fett)."
+    },
+    "salesStat": {
+      "title": "Verkaufskennzahl",
+      "desc": "Eine einzelne Verkaufskennzahl (Umsatz, Bestellungen, …)."
+    },
+    "salesRevenueTrend": {
+      "title": "Umsatztrend",
+      "desc": "Monatlicher Umsatz der letzten sechs Monate."
+    },
+    "salesTopProducts": {
+      "title": "Top-Produkte",
+      "desc": "Meistverkaufte Produkte nach Umsatz."
+    },
+    "salesOrderStatus": {
+      "title": "Bestellstatus",
+      "desc": "Bestellungen nach Status."
+    },
+    "salesRecentOrders": {
+      "title": "Neueste Bestellungen",
+      "desc": "Die zuletzt aufgegebenen Bestellungen."
+    },
+    "kpiHero": {
+      "title": "KPI-Highlight",
+      "desc": "Eine zentrale Kennzahl in einer auffälligen, gebrandeten Karte."
+    },
+    "goal": {
+      "title": "Ziel",
+      "desc": "Fortschritt zu einem Ziel, als Ring."
+    },
+    "leaderboard": {
+      "title": "Rangliste",
+      "desc": "Sortierte Balken – Top-Rollen oder Aktivitätskategorien."
+    },
     "field": {
       "target": "Zielwert",
       "metric": "Kennzahl",

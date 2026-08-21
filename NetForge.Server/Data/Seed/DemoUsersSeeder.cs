@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore;
 namespace NetForge.Server.Data.Seed;
 
 /// <summary>
-/// Dev-only: seeds a couple dozen demo users with staggered <see cref="AppUser.CreatedAt"/> and
-/// varied flags so the Users DataGrid has real data to sort, filter, page, and select across on
-/// first run. Idempotent and non-destructive — skips once the table holds more than the admin.
-/// Superseded by the Bogus-based demo seeder in Phase 10.
+/// Demo content: a couple dozen users with staggered <see cref="AppUser.CreatedAt"/> and varied flags so the
+/// Users DataGrid has real data to sort, filter, page, and select across on first run, plus a photo for the
+/// seeded admin. Runs in Development or wherever <c>Seed:DemoData</c> is on. Idempotent and non-destructive —
+/// the user pass skips once the table holds more than the admin.
 /// </summary>
 public static class DemoUsersSeeder
 {
@@ -42,4 +42,5 @@ public static class DemoUsersSeeder
             await users.CreateAsync(user, "Demo123!$");
         }
     }
+
 }
