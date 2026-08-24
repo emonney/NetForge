@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href="https://demo.netforge.ebenmonney.com"><b>▶ Live demo</b></a> &nbsp;·&nbsp;
-  <a href="https://netforge.ebenmonney.com"><b>⚙ Build your edition</b></a> &nbsp;·&nbsp;
+  <a href="https://netforge.ebenmonney.com/#configure"><b>⚙ Build your edition</b></a> &nbsp;·&nbsp;
   <a href="https://docs.netforge.ebenmonney.com"><b>📖 Documentation</b></a> &nbsp;·&nbsp;
   <a href="#community-vs-pro"><b>Community vs Pro</b></a>
 </p>
@@ -139,7 +139,7 @@ Community is a complete starter on its own. **Pro** adds the product layer most 
 
 <p align="center">
   <b><a href="https://demo.netforge.ebenmonney.com">Try the full app live →</a></b> &nbsp;&nbsp;|&nbsp;&nbsp;
-  <b><a href="https://netforge.ebenmonney.com">Build & download your exact edition →</a></b>
+  <b><a href="https://netforge.ebenmonney.com/#configure">Build & download your exact edition →</a></b>
 </p>
 
 The configurator lets you choose precisely the features you want — turn any Pro subsystem on or off and get a ready-to-run project.

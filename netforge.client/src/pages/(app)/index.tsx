@@ -38,7 +38,7 @@ function StarterHome() {
   ];
   // Upstream NetForge configurator. Assembled at runtime so the project rename (which rewrites the literal
   // "NetForge"/"netforge" → your app's name across the scaffold) leaves this upstream URL intact.
-  const configuratorUrl = 'https://net' + 'forge.ebenmonney.com/?edition=pro';
+  const configuratorUrl = 'https://net' + 'forge.ebenmonney.com/?edition=pro#configure';
   return (
     <div className="grid gap-4">
       <div className="bg-card rounded-xl border p-5">

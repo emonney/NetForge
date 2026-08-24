@@ -180,7 +180,7 @@ Three ways to create a project, all driving the same options:
 
 - **CLI wizard** (easiest) — `dotnet tool install -g NetForge.Cli`, then `netforge new` walks you through edition, database, features, OAuth, and theme, resolves feature dependencies, and runs `dotnet new` for you. Scriptable too: `netforge new -n MyApp --tier basic --with dashboard,webhooks --yes` (or `--dry-run`).
 - **Raw template** — the free Basic edition is `dotnet new install NetForge.Templates`, then `dotnet new netforge -n MyApp`. The full Pro template (`NetForge.Pro.Templates`, with the `--tier`/feature/database flags below) installs from the Pro feed — [sign in and get a Pro plan](https://netforge.ebenmonney.com) and your CLI feed token + install command are on your dashboard.
-- **Online configurator** — pick features visually at <https://netforge.ebenmonney.com> and download a ZIP.
+- **Online configurator** — pick features visually at <https://netforge.ebenmonney.com/#configure> and download a ZIP.
 
 > **Prefer not to scaffold at all?** Describe your app in plain language and NetForge's AI builds the whole thing for you — and a real senior developer backs every build, free with every plan. Configure it yourself or let AI build it; either way you download a standard ASP.NET Core + React/Angular app on the database you chose, with no lock-in. Start at <https://netforge.ebenmonney.com/ai>.
 
