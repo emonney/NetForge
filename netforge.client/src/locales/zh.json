@@ -985,6 +985,7 @@
       "desc": "最近下的订单。"
     },
     "kpiHero": {
+      "vsPrevious": "较前 7 天",
       "title": "KPI 亮点",
       "desc": "在醒目的品牌卡片中展示的核心指标。"
     },
@@ -1008,10 +1009,15 @@
     "opt": {
       "totalUsers": "用户总数",
       "newUsersThisWeek": "本周新增用户",
+      "newUsersThisWeekShort": "本周新增",
       "auditToday": "今日事件",
       "unreadNotifications": "未读通知",
+      "unreadNotificationsShort": "未读",
+      "notificationsThisWeek": "本周通知",
+      "notificationsThisWeekShort": "通知",
       "signups": "注册量随时间变化",
       "usersByRole": "按角色划分的用户",
+      "auditDaily": "每日活动",
       "auditByCategory": "按类别划分的活动",
       "revenue": "收入",
       "orders": "订单",

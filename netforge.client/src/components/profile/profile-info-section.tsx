@@ -7,7 +7,7 @@ import { BadgeCheck, Loader2 } from 'lucide-react';
 
 import { authApi } from '@/lib/api/auth';
 import { useAuth, useSetCurrentUser } from '@/hooks/use-auth';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { UserAvatar } from '@/components/user-avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -43,10 +43,12 @@ export function ProfileInfoSection() {
   // the JSX below needs no build-time conditional.
   const slots: Record<string, ReactNode> = {
     avatarBlock: (
-      <Avatar className="size-16">
-        <AvatarImage src={user.avatarUrl ?? undefined} alt="" />
-        <AvatarFallback className="text-lg">{initials(user.displayName ?? user.email)}</AvatarFallback>
-      </Avatar>
+      <UserAvatar
+        name={user.displayName ?? user.email}
+        avatarUrl={user.avatarUrl}
+        className="size-16"
+        fallbackClassName="text-lg"
+      />
     ),
   };
 
@@ -91,10 +93,4 @@ export function ProfileInfoSection() {
       </CardContent>
     </Card>
   );
-}
-
-function initials(value: string): string {
-  const parts = value.trim().split(/\s+/);
-  if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
-  return value.slice(0, 2).toUpperCase();
 }

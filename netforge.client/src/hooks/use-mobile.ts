@@ -17,3 +17,23 @@ export function useIsMobile() {
     () => false,
   )
 }
+
+// Same store-backed read for an arbitrary query. Used where two components must agree on one
+// threshold (the topbar's overflow ladder): a CSS breakpoint on one side and a JS one on the other
+// would drift, and the control would show up twice or not at all.
+export function useMediaQuery(query: string) {
+  const subscribe = React.useCallback(
+    (onChange: () => void) => {
+      const mql = window.matchMedia(query)
+      mql.addEventListener("change", onChange)
+      return () => mql.removeEventListener("change", onChange)
+    },
+    [query],
+  )
+
+  return React.useSyncExternalStore(
+    subscribe,
+    React.useCallback(() => window.matchMedia(query).matches, [query]),
+    () => false,
+  )
+}

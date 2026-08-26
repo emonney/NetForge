@@ -1,5 +1,5 @@
 import { useEffect, type ReactNode } from 'react';
-import { Outlet } from 'react-router';
+import { Outlet, ScrollRestoration } from 'react-router';
 import { QueryClientProvider } from '@tanstack/react-query';
 
 import { useAuth } from '@/hooks/use-auth';
@@ -46,6 +46,11 @@ export default function App() {
       <ThemeProvider defaultTheme="system" storageKey="netforge-theme">
         <BrandColor />
         <AuthLocaleSync />
+        {/* Keyed by pathname, not the whole location: <DataGrid> mirrors its page/sort/search/filter
+            state to the query string, and the default key would treat each of those writes as a new
+            location and jump the user back to the top mid-scroll. The Angular twin is the
+            appScrollRestoration directive. */}
+        <ScrollRestoration getKey={(location) => location.pathname} />
         <Outlet />
         <Toaster />
         {slots.pwaPrompts}

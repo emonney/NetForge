@@ -90,7 +90,7 @@ user-secrets in production, **never committed**.
 | `Auth:RequireConfirmedEmail` | `true` | Require email confirmation before sign-in. |
 | `Auth:OAuth:{Google,Microsoft,GitHub}:{ClientId,ClientSecret}` | (empty) | OAuth credentials per provider. A provider with blank credentials is **hidden** automatically. |
 | `Seed:Admin:{Email,Password}` | dev: local defaults | Initial administrator, seeded idempotently on boot. **Required in production** — a known-default admin is never created on a non-Development deploy. Set via env vars / user-secrets. |
-| `Seed:DemoData` | `false` | Seed the sample demo users + Sales data outside Development (e.g. a public demo). Always on in Development. |
+| `Seed:DemoData` | `false` | Seed the demo content outside Development (e.g. a public demo). Always on in Development. See [§3.4](#34-demo-data). |
 | `Email:FromName` | (empty) | Display name on the From header (falls back to the bare address). |
 | `Email:FromAddress` | (empty) | Sender address. Set this **and** `Email:Smtp:Host` to switch from console logging to real SMTP. |
 | `Email:Smtp:Host` | (empty) | SMTP relay host (e.g. `smtp-relay.brevo.com`). |
@@ -105,7 +105,7 @@ user-secrets in production, **never committed**.
 ### 3.2 Database providers
 
 The model is **provider-agnostic** — NetForge runs on SQLite, PostgreSQL, or SQL Server. The provider is
-chosen at scaffold time (`--database`, see [§3.5](#35-scaffolding-options)) and is otherwise a config
+chosen at scaffold time (`--database`, see [§3.6](#36-scaffolding-options)) and is otherwise a config
 switch: set `Database:Provider` + a matching `ConnectionStrings:Default`.
 
 | Provider | Best for | Notes |
@@ -166,7 +166,35 @@ relay — **Brevo** (`smtp-relay.brevo.com:587`, STARTTLS), SendGrid, Mailgun, G
 Keep the SMTP password in environment variables / user-secrets. All emails share one branded, table-based
 template (the accent comes from `App:BrandColor`).
 
-### 3.4 Production checklist
+### 3.4 Demo data
+
+In **Development** — or anywhere you set `Seed:DemoData` — a fresh database is seeded with enough
+content that every screen has something real to show on first run:
+
+- **~420 users**, dated along a plausible sign-up curve over the last 120 days (a rising trend, a
+  weekday/weekend rhythm, day-to-day noise) and spread across five roles. That volume is the point: it
+  is what makes the Users grid worth paging, sorting, and filtering, and what gives the dashboard's
+  charts a shape instead of a flat row of identical spikes. They all sign in with `Demo123!$`.
+- **A 45-day audit trail**, weighted toward office hours and weekdays, so the activity feed and the
+  "events over time" widgets have history rather than one spike at seed time.
+- **A notification inbox** for the seeded admin — around 46 over the last month at a varying daily rate,
+  a few of them still unread.
+- **Webhook endpoints and a week of deliveries**, including one paused endpoint and a few failures, so
+  the delivery log has retry counts and response codes to show.
+- **Roles that read like jobs** — Manager, Analyst, and Support each carry a plausible permission set
+  rather than a single grant, so the roles list and the permission matrix have something to display.
+- **The Sales sample catalog** — products with real photographs, categories, customers, and several
+  hundred orders spread across the six months the revenue chart covers, plus a couple of comment
+  threads on entity detail screens (Pro editions with the demo included).
+
+Seeded audit events point at **real rows**, so the per-entity timeline on a detail screen has history in
+it, and each entity's history reads in order — created once, then edited.
+
+Each pass is idempotent and non-destructive: it no-ops once its table has rows, so restarting never
+duplicates anything and your own data is never touched. Delete the database file (or run the demo
+site's factory reset) to seed again.
+
+### 3.5 Production checklist
 
 - Set `Seed:Admin:Email` + `Seed:Admin:Password` (**required** — no admin is seeded otherwise).
 - Set `Database:Provider` + `ConnectionStrings:Default` for your database.
@@ -174,7 +202,7 @@ template (the accent comes from `App:BrandColor`).
 - Set `App:ClientUrl` if the SPA and API are on different origins.
 - Provide OAuth credentials for any providers you want visible.
 
-### 3.5 Scaffolding options
+### 3.6 Scaffolding options
 
 Three ways to create a project, all driving the same options:
 
@@ -415,8 +443,14 @@ log's detail panel — a chronological feed of everything that happened to that 
 
 ### 8.8 Dashboard (home)
 The home screen is a **customizable widget dashboard**. Hit **Edit** to **drag, resize, add, configure,
-and remove** widgets on a responsive grid, then **Save**. The grid reflows as the window narrows — your
-full-width arrangement while there's room for it, then an even two-up, then a single column on phones.
+and remove** widgets on a responsive grid, then **Save**. The grid reflows as the window narrows: your
+full arrangement while there's room for it, then an even **four columns**, then **two**. Which widgets
+pack several-across in those narrower grids is a property of the widget, not of its desktop width —
+anything whose content is a single figure (the stat tiles, the goal ring) takes one column, while
+charts and lists take half the row or all of it, because a chart squeezed into a quarter of a phone
+screen is unreadable. The board is packed to leave **no holes** at any width: a widget that doesn't fit
+the gap in front of it lets the next one that does go first, and a column that still ends short has its
+last widget grown to meet its neighbours.
 
 **Every width is editable.** By default a narrow width just follows your full-width layout, so you only
 have to arrange things once. But arrange a narrow width by hand and it's **saved separately** — phones
@@ -430,10 +464,19 @@ get a sensible **starter dashboard** tailored to your permissions.
 **Built-in widgets:** a **Stat** card and a bold **Highlight** card (a headline metric — total users, new
 users this week, today's activity, or unread notifications — with a trend delta and a sparkline), a
 **Goal** ring (progress toward a target you set), a **Leaderboard** (ranked bars — users by role or
-activity by category), **Line / Area / Bar / Pie charts** (user signups over time, users by role, activity
-by category), an **Activity feed** (recent audit events), **Recent notifications**, **Quick links** (your
-own list of in-app shortcuts), and a **Markdown note**. The picker only offers widgets you have
-permission to populate, and every widget renders its own loading / empty / error state.
+activity by category), **Line / Area / Bar / Pie charts** (user sign-ups over time, activity per day,
+users by role, activity by category), an **Activity feed** (recent audit events), **Recent
+notifications**, **Quick links** (your own list of in-app shortcuts), and a **Markdown note**. The
+picker only offers widgets you have permission to populate, and every widget renders its own loading /
+empty / error state.
+
+A placed widget is **titled, iconed, and coloured by what it shows**, not by its type — a stat card set
+to *Events today* is headed "Events today" behind an activity glyph in its own accent, and an area chart
+on sign-ups is headed "Sign-ups over time" — so a board of configurable tiles reads at a glance. Each
+metric also draws its **own** trend line, and the one its number is actually claiming: a running total
+(total users) plots the cumulative curve, a metric whose name is already a window ("this week") plots a
+rolling seven-day total, one about a single day plots the daily counts, and a live count with no history
+shows no line at all rather than borrowing another metric's.
 
 **For developers:** add a widget by exporting a `WidgetDefinition` from `src/widgets/widgets/*` and
 registering it in `src/widgets/registry.ts` — it then appears in the picker. Data widgets read from the
@@ -515,7 +558,9 @@ Once on:
   and a read-only member in another; their permissions re-project the moment they switch. Role *definitions*
   (in `/admin/roles`) are shared; the *assignment* is per-tenant, managed on each tenant's detail page.
 - **Tenant switcher** — a control in the top bar lists the tenants you belong to; switching re-tints the
-  app with that tenant's brand colour and reloads into its data.
+  app with that tenant's brand colour and reloads into its data. On a narrow phone it shows just its icon
+  (there is no room for a name), and on the very narrowest it moves off the bar entirely — into the
+  **account menu** in React, the **navigation drawer** in Angular, where the full name fits again.
 - **Invitations** — invite someone by email to a tenant with a role. They get a signed link to an
   **accept** page (sign-in required); accepting adds the membership. Pending invitations can be revoked.
 - **Isolation** — every tenant-scoped record carries a `TenantId` and is filtered automatically, so one
@@ -533,7 +578,8 @@ Resolution strategies: **UserClaim** (from the signed-in user — best for local
   ⌘K command palette, notifications, the theme toggle, and your account menu. Replay it anytime from
   **account menu → Take a tour**.
 - **What's new** — the ✨ button in the top bar shows a dot when there's a release you haven't seen;
-  it opens the **/changelog** timeline of recent improvements.
+  it opens the **/changelog** timeline of recent improvements. On a phone it lives in the **account menu**
+  instead, so the top bar stays uncrowded.
 - **System health** (admins, `health.read`) — **/admin/health** shows the live status of the database,
   background jobs, and storage, with auto-refresh. For ops, anonymous probes live at **/health/live**
   (liveness) and **/health/ready** (readiness) for load balancers and orchestrators.
@@ -568,7 +614,7 @@ spinners or raw error JSON — and adapts to phone viewports (sidebar → drawer
 **Backend:** .NET 10 · Minimal APIs · EF Core 10 · ASP.NET Identity · FluentValidation · Serilog ·
 Hangfire · Scalar (API docs) · SignalR · Magick.NET (images) · ClosedXML + CsvHelper + QuestPDF (export).
 **Frontend:** React 19 · Vite 8 · TypeScript 6 · Tailwind v4 · shadcn/ui · React Router 7 (file-system
-routes) · TanStack Query + Table · Zustand · React Hook Form + Zod · sonner · lucide-react · `@microsoft/signalr`.
+routes) · TanStack Query + Table · React Hook Form + Zod · sonner · lucide-react · `@microsoft/signalr`.
 **Database:** SQLite (dev) · PostgreSQL (prod default) · SQL Server (supported).
 **Testing:** xUnit v3 · Shouldly · NSubstitute · `WebApplicationFactory<Program>` (integration over throwaway SQLite).
 

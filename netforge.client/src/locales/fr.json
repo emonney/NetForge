@@ -985,6 +985,7 @@
       "desc": "Les dernières commandes passées."
     },
     "kpiHero": {
+      "vsPrevious": "vs 7 jours précédents",
       "title": "KPI vedette",
       "desc": "Une métrique phare dans une carte marquante aux couleurs de la marque."
     },
@@ -1008,10 +1009,15 @@
     "opt": {
       "totalUsers": "Total des utilisateurs",
       "newUsersThisWeek": "Nouveaux utilisateurs cette semaine",
+      "newUsersThisWeekShort": "Nouveaux cette semaine",
       "auditToday": "Événements aujourd'hui",
       "unreadNotifications": "Notifications non lues",
+      "unreadNotificationsShort": "Non lus",
+      "notificationsThisWeek": "Notifications cette semaine",
+      "notificationsThisWeekShort": "Notifications",
       "signups": "Inscriptions dans le temps",
       "usersByRole": "Utilisateurs par rôle",
+      "auditDaily": "Activité par jour",
       "auditByCategory": "Activité par catégorie",
       "revenue": "Chiffre d'affaires",
       "orders": "Commandes",

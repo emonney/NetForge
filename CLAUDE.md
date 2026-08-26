@@ -55,7 +55,12 @@ focus, Escape/Enter). Build these into the components; if you can't cover all si
 ## Don't
 
 - ❌ MediatR/CQRS ceremony, AutoMapper, or a `Repository<T>` over EF — use `DbContext` directly.
-- ❌ `useEffect` for data fetching — use TanStack Query.
+- ❌ `useEffect` for data fetching — use TanStack Query (React `useQuery`, Angular `injectQuery`).
+  Angular: don't reach for `resource`/`httpResource` either — no shared cache, no invalidation.
+- ❌ Inlining a cache key — use the slice's `*Keys` factory, so a detail key can't drift from the one
+  its page reads (a mismatch fails silently).
+- ❌ Driving a skeleton from `isFetching` — that's for a progress bar over content already on screen.
+  Skeletons come from `isLoading`, wrapped in `useDelayedFlag()` / `delayedFlag()`.
 - ❌ `localStorage` for auth tokens — cookies handle it.
 - ❌ Editing `Program.cs` to wire a feature — discovery is reflection-based.
 

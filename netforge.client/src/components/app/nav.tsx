@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
 import { NavLink, useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
+import { INTRO, introDelay, useIntroMotion } from '@/hooks/use-intro-motion';
 import { ChevronRight } from 'lucide-react';
 
 import { useAuth } from '@/hooks/use-auth';
@@ -39,20 +40,44 @@ export function SidebarNav() {
     ),
   })).filter((section) => section.items.length > 0);
 
+  // The nav builds in on the first shell paint of a session — once, after signing in, not on every
+  // navigation. See useIntroMotion for why that distinction matters.
+  const playIntro = useIntroMotion('shell-nav');
+
+  // Where each section starts in one flat running count, so the stagger reads as a single continuous
+  // sweep down the rail rather than restarting at every group.
+  const startIndexes = sections.reduce<number[]>(
+    (acc, _section, i) => [...acc, (acc[i - 1] ?? 0) + (sections[i - 1]?.items.length ?? 0)],
+    [],
+  );
+
   return (
     <>
       {sections.map((section, i) => (
-        <NavGroup key={section.labelKey ?? `s${i}`} section={section} />
+        <NavGroup
+          key={section.labelKey ?? `s${i}`}
+          section={section}
+          playIntro={playIntro}
+          startIndex={startIndexes[i]}
+        />
       ))}
     </>
   );
 }
 
-function NavGroup({ section }: { section: NavSection }) {
+function NavGroup({
+  section,
+  playIntro,
+  startIndex,
+}: {
+  section: NavSection;
+  playIntro: boolean;
+  startIndex: number;
+}) {
   const menu = (
     <SidebarMenu>
-      {section.items.map((item) => (
-        <NavMenuItem key={item.to} item={item} />
+      {section.items.map((item, i) => (
+        <NavMenuItem key={item.to} item={item} playIntro={playIntro} introIndex={startIndex + i} />
       ))}
     </SidebarMenu>
   );
@@ -93,16 +118,37 @@ function CollapsibleNavGroup({ labelKey, children }: { labelKey: string; childre
   );
 }
 
-function NavMenuItem({ item }: { item: NavItem }) {
+function NavMenuItem({
+  item,
+  playIntro,
+  introIndex,
+}: {
+  item: NavItem;
+  playIntro: boolean;
+  introIndex: number;
+}) {
   const { t } = useTranslation();
   const { pathname } = useLocation();
   const { isMobile, setOpenMobile } = useSidebar();
+
+  // Fixed on mount. introDelay() is relative to *now*, so recomputing it on a later re-render would
+  // hand CSS a shorter delay mid-animation and restart the item from the top.
+  const [delay] = useState(() => introDelay(INTRO.nav, introIndex));
+  const introProps = playIntro
+    ? {
+        className: 'nav-intro-item',
+        style: {
+          '--intro-delay': `${delay}ms`,
+          '--intro-duration': `${INTRO.nav.duration}ms`,
+        } as CSSProperties,
+      }
+    : {};
 
   // External items (e.g. the Hangfire dashboard) are server-rendered pages, not SPA routes — open them
   // in a new tab so the app stays put; same origin, so the auth cookie rides along.
   if (item.external) {
     return (
-      <SidebarMenuItem>
+      <SidebarMenuItem {...introProps}>
         <SidebarMenuButton asChild tooltip={t(item.titleKey)}>
           <a
             href={item.to}
@@ -123,9 +169,9 @@ function NavMenuItem({ item }: { item: NavItem }) {
     : pathname === item.to || pathname.startsWith(`${item.to}/`);
 
   return (
-    <SidebarMenuItem>
+    <SidebarMenuItem {...introProps}>
       <SidebarMenuButton asChild isActive={active} tooltip={t(item.titleKey)}>
-        <NavLink to={item.to} end={item.end} onClick={() => isMobile && setOpenMobile(false)}>
+        <NavLink to={item.to} end={item.end} viewTransition onClick={() => isMobile && setOpenMobile(false)}>
           <item.icon />
           <span>{t(item.titleKey)}</span>
         </NavLink>

@@ -10,7 +10,7 @@ import { usersApi, PERM, type AdminUser } from '@/lib/api/admin';
 import { isApiError } from '@/lib/problem';
 import { usePermission } from '@/hooks/use-permission';
 import { useDocumentTitle } from '@/hooks/use-document-title';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { UserAvatar } from '@/components/user-avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -331,9 +331,7 @@ function UserIdentity({ user }: { user: AdminUser }) {
   const { t } = useTranslation();
   return (
     <div className="flex items-center gap-3">
-      <Avatar className="size-9">
-        <AvatarFallback>{initials(user.displayName ?? user.email)}</AvatarFallback>
-      </Avatar>
+      <UserAvatar name={user.displayName ?? user.email} avatarUrl={user.avatarUrl} />
       <div className="min-w-0">
         <div className="flex items-center gap-2">
           <span className="truncate font-medium">{user.displayName ?? user.email}</span>
@@ -370,10 +368,4 @@ function StatusBadges({ user }: { user: AdminUser }) {
       )}
     </div>
   );
-}
-
-function initials(value: string): string {
-  const parts = value.trim().split(/\s+/);
-  if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
-  return value.slice(0, 2).toUpperCase();
 }

@@ -985,6 +985,7 @@
       "desc": "Los últimos pedidos realizados."
     },
     "kpiHero": {
+      "vsPrevious": "frente a los 7 días anteriores",
       "title": "KPI destacado",
       "desc": "Una métrica principal en una tarjeta destacada."
     },
@@ -1008,10 +1009,15 @@
     "opt": {
       "totalUsers": "Total de usuarios",
       "newUsersThisWeek": "Nuevos usuarios esta semana",
+      "newUsersThisWeekShort": "Nuevos esta semana",
       "auditToday": "Eventos hoy",
       "unreadNotifications": "Notificaciones sin leer",
+      "unreadNotificationsShort": "Sin leer",
+      "notificationsThisWeek": "Notificaciones esta semana",
+      "notificationsThisWeekShort": "Notificaciones",
       "signups": "Registros a lo largo del tiempo",
       "usersByRole": "Usuarios por rol",
+      "auditDaily": "Actividad por día",
       "auditByCategory": "Actividad por categoría",
       "revenue": "Ingresos",
       "orders": "Pedidos",

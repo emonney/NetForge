@@ -188,3 +188,206 @@
 .driver-popover.netforge-tour .driver-popover-arrow-side-right { border-right-color: var(--popover); }
 .driver-popover.netforge-tour .driver-popover-arrow-side-top { border-top-color: var(--popover); }
 .driver-popover.netforge-tour .driver-popover-arrow-side-bottom { border-bottom-color: var(--popover); }
+
+/* ---------------------------------------------------------------------------
+   Page transitions (View Transitions API)
+
+   The Angular twin lives in netforge.angular.client/src/styles.scss — same
+   timings and curves, so both flavors move identically. Native, so there's no
+   animation library; browsers without support simply swap instantly.
+
+   Opt in per navigation with <Link viewTransition>; React Router only starts a
+   transition for those, so a grid writing its filters to the query string never
+   triggers one.
+
+   The shell must not move. Suppressing the root group's animation stops the
+   default full-document cross-fade (which would flicker the sidebar, topbar, and
+   scrollbar) and leaves only the named content region animating.
+   --------------------------------------------------------------------------- */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+#main-content {
+  view-transition-name: page;
+}
+
+/* A hair over one frame out, a short rise in: long enough to read as motion,
+   short enough that it never feels like waiting. The incoming half is what the
+   eye follows, so it gets the longer, decelerating half. */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(page) {
+    animation: 90ms cubic-bezier(0.4, 0, 1, 1) both nf-page-out;
+  }
+
+  ::view-transition-new(page) {
+    animation: 190ms cubic-bezier(0, 0, 0.2, 1) 40ms both nf-page-in;
+  }
+}
+
+/* Reduced motion still gets the transition machinery (so shared elements stay
+   matched) but no movement or fade. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(page),
+  ::view-transition-new(page) {
+    animation: none;
+  }
+}
+
+@keyframes nf-page-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes nf-page-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* Shared element: a list row's avatar tweens into the detail header's instead of the two
+   cross-fading, so the row reads as *becoming* the page. The group tween carries position and
+   size; the old/new halves cross-fade inside it. Slightly longer than the page fade — this is the
+   thing the eye is following. */
+::view-transition-group(entity-hero) {
+  animation-duration: 260ms;
+  animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+::view-transition-old(entity-hero),
+::view-transition-new(entity-hero) {
+  animation-duration: 260ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(entity-hero),
+  ::view-transition-old(entity-hero),
+  ::view-transition-new(entity-hero) {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Nav build-in — phase 1 of the first-load choreography (see useIntroMotion),
+   once per session on the first shell paint, never on navigation.
+
+   Timing comes from JS, not from an index times a constant here: the phases share
+   one clock so a board that mounts late still lands in its own phase rather than
+   dragging the handoff with it.
+
+   Travel is deliberately generous. At these durations a 6px nudge reads as content
+   settling — as loading — while a clear rise reads as something moving into place.
+   The curve overshoots slightly so each row decompresses rather than braking.
+   --------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .nav-intro-item {
+    /* Two animations, because the two properties want different curves. The spring belongs to the
+       movement — on opacity it front-loads the fade so hard the item is fully solid a third of the way
+       in, which is why the fade had all but disappeared. Splitting them lets the rise keep its
+       overshoot while the fade runs its own near-linear ramp across the whole duration, so the item is
+       still visibly arriving rather than already there. */
+    animation:
+      nav-item-rise var(--intro-duration, 520ms) cubic-bezier(0.34, 1.4, 0.64, 1) both,
+      nav-item-fade var(--intro-duration, 520ms) cubic-bezier(0.4, 0, 0.6, 1) both;
+    animation-delay: var(--intro-delay, 0ms);
+  }
+}
+
+@keyframes nav-item-rise {
+  from {
+    transform: translateY(30px);
+  }
+}
+
+@keyframes nav-item-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Page transitions (View Transitions API)
+
+   The Angular twin lives in netforge.angular.client/src/styles.scss — same
+   timings and curves, so both flavors move identically. Native, so there's no
+   animation library; browsers without support simply swap instantly.
+
+   Opt in per navigation with <Link viewTransition>; React Router only starts a
+   transition for those, so a grid writing its filters to the query string never
+   triggers one.
+
+   The shell must not move. Suppressing the root group's animation stops the
+   default full-document cross-fade (which would flicker the sidebar, topbar, and
+   scrollbar) and leaves only the named content region animating.
+   --------------------------------------------------------------------------- */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+#main-content {
+  view-transition-name: page;
+}
+
+/* A hair over one frame out, a short rise in: long enough to read as motion,
+   short enough that it never feels like waiting. The incoming half is what the
+   eye follows, so it gets the longer, decelerating half. */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(page) {
+    animation: 90ms cubic-bezier(0.4, 0, 1, 1) both nf-page-out;
+  }
+
+  ::view-transition-new(page) {
+    animation: 190ms cubic-bezier(0, 0, 0.2, 1) 40ms both nf-page-in;
+  }
+}
+
+/* Reduced motion still gets the transition machinery (so shared elements stay
+   matched) but no movement or fade. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(page),
+  ::view-transition-new(page) {
+    animation: none;
+  }
+}
+
+@keyframes nf-page-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes nf-page-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* Shared element: a list row's avatar tweens into the detail header's instead of the two
+   cross-fading, so the row reads as *becoming* the page. The group tween carries position and
+   size; the old/new halves cross-fade inside it. Slightly longer than the page fade — this is the
+   thing the eye is following. */
+::view-transition-group(entity-hero) {
+  animation-duration: 260ms;
+  animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+::view-transition-old(entity-hero),
+::view-transition-new(entity-hero) {
+  animation-duration: 260ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(entity-hero),
+  ::view-transition-old(entity-hero),
+  ::view-transition-new(entity-hero) {
+    animation: none;
+  }
+}

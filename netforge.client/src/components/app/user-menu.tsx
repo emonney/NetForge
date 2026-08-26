@@ -6,7 +6,7 @@ import { LogOut, Shield, User } from 'lucide-react';
 import { useAuth, useLogout } from '@/hooks/use-auth';
 import { hasPermission } from '@/lib/permissions';
 import { PERM } from '@/lib/api/admin';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { UserAvatar } from '@/components/user-avatar';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -43,10 +43,7 @@ export function UserMenu() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="rounded-full" aria-label={t('account.menuLabel')}>
-          <Avatar className="size-8">
-            <AvatarImage src={user.avatarUrl ?? undefined} alt="" />
-            <AvatarFallback>{initials(user.displayName ?? user.email)}</AvatarFallback>
-          </Avatar>
+          <UserAvatar name={user.displayName ?? user.email} avatarUrl={user.avatarUrl} className="size-8" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
@@ -59,6 +56,7 @@ export function UserMenu() {
           <User />
           {t('account.profile')}
         </DropdownMenuItem>
+        {slots.whatsNewItem}
         {slots.tourItem}
         {adminHref && (
           <DropdownMenuItem onClick={() => navigate(adminHref)}>
@@ -66,6 +64,7 @@ export function UserMenu() {
             {t('account.administration')}
           </DropdownMenuItem>
         )}
+        {slots.tenantSection}
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={signOut} disabled={logout.isPending}>
           <LogOut />
@@ -74,10 +73,4 @@ export function UserMenu() {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
-
-function initials(value: string): string {
-  const parts = value.trim().split(/\s+/);
-  if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
-  return value.slice(0, 2).toUpperCase();
 }

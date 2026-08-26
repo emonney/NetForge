@@ -20,6 +20,7 @@ export function AppSidebar() {
       <SidebarHeader className="h-14 justify-center">
         <Link
           to="/"
+          viewTransition
           className="focus-visible:ring-ring/50 flex min-w-0 items-center rounded-md px-1 outline-none focus-visible:ring-[3px]"
         >
           <ShellBrand className="group-data-[collapsible=icon]:hidden" />

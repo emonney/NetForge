@@ -26,6 +26,7 @@ import {
 import { cn } from '@/lib/utils';
 import type { DataGridApi, DataGridState } from './use-data-grid';
 import { EmptyState, ErrorState, LoadingSkeleton } from '@/components/data-states';
+import { useDelayedFlag } from '@/hooks/use-delayed-flag';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -51,6 +52,12 @@ export interface DataGridProps<T> {
   /** Extra toolbar controls (e.g. faceted filters) shown next to the search box. */
   toolbar?: ReactNode;
   onRowClick?: (row: T) => void;
+  /**
+   * Called the first time a row is hovered or focused, so a page can warm the detail it is about to
+   * need. Hover-to-click is typically 200ms or more, which usually covers the whole round trip.
+   * Fired once per row, not on every pointer move — prefetching is a hint, not a subscription.
+   */
+  onRowHover?: (row: T) => void;
   empty?: { icon: LucideIcon; title: string; description: string; action?: ReactNode };
   /** Enables localStorage-backed saved views (and the table/card view choice) under this key. */
   viewKey?: string;
@@ -76,6 +83,7 @@ export function DataGrid<T>({
   bulkActions,
   toolbar,
   onRowClick,
+  onRowHover,
   empty,
   viewKey,
   enableColumnHiding = true,
@@ -86,6 +94,20 @@ export function DataGrid<T>({
 }: DataGridProps<T>) {
   const { t } = useTranslation();
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+
+  // A list that answers in under ~150ms shouldn't flash a skeleton on the way; see useDelayedFlag.
+  const showSkeleton = useDelayedFlag(grid.isLoading);
+
+  // Fire onRowHover at most once per row, so a pointer crossing a table doesn't re-request.
+  const hoveredRows = useRef(new Set<string>());
+  const hoverOnce = onRowHover
+    ? (row: T) => {
+        const id = String(getRowId(row));
+        if (hoveredRows.current.has(id)) return;
+        hoveredRows.current.add(id);
+        onRowHover(row);
+      }
+    : undefined;
 
   // Table vs card view (only when renderCard is provided); the choice persists per viewKey, falling back to
   // defaultView on the first visit (before any saved choice).
@@ -172,6 +194,8 @@ export function DataGrid<T>({
           <li
             key={getRowId(item)}
             onClick={onRowClick ? () => onRowClick(item) : undefined}
+            onMouseEnter={hoverOnce ? () => hoverOnce(item) : undefined}
+            onFocus={hoverOnce ? () => hoverOnce(item) : undefined}
             className={cn(onRowClick && 'cursor-pointer')}
           >
             {renderCard(item, visibleColumnIds)}
@@ -276,7 +300,7 @@ export function DataGrid<T>({
       )}
 
       {/* Body */}
-      {grid.isLoading ? (
+      {showSkeleton ? (
         <div className="rounded-lg border p-4">
           <LoadingSkeleton variant="table" rows={grid.pageSize > 10 ? 8 : grid.pageSize} cols={columns.length} />
         </div>
@@ -340,6 +364,8 @@ export function DataGrid<T>({
                   <tr
                     key={row.id}
                     onClick={onRowClick ? () => onRowClick(row.original) : undefined}
+                    onMouseEnter={hoverOnce ? () => hoverOnce(row.original) : undefined}
+                    onFocus={hoverOnce ? () => hoverOnce(row.original) : undefined}
                     className={cn(
                       'border-b last:border-0 transition-colors',
                       row.getIsSelected() ? 'bg-accent/40' : 'hover:bg-muted/40',
@@ -371,6 +397,8 @@ export function DataGrid<T>({
                 <li
                   key={row.id}
                   onClick={onRowClick ? () => onRowClick(row.original) : undefined}
+                  onMouseEnter={hoverOnce ? () => hoverOnce(row.original) : undefined}
+                  onFocus={hoverOnce ? () => hoverOnce(row.original) : undefined}
                   className={cn(
                     'flex flex-col gap-2.5 rounded-lg border p-3',
                     row.getIsSelected() && 'ring-primary/40 ring-2',

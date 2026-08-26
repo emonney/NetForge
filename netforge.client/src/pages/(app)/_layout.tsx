@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useAuth } from '@/hooks/use-auth';
 import { FullScreenLoader } from '@/components/full-screen-loader';
+import { useDelayedFlag } from '@/hooks/use-delayed-flag';
 import { AppSidebar } from '@/components/app/app-sidebar';
 import { AppTopbar } from '@/components/app/app-topbar';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
@@ -15,9 +16,13 @@ export default function AppLayout() {
   const { isAuthenticated, isLoading } = useAuth();
   const { t } = useTranslation();
   const location = useLocation();
+  const showSessionLoader = useDelayedFlag(isLoading);
 
 
-  if (isLoading) return <FullScreenLoader />;
+  // Delayed: a session check that answers quickly should show nothing at all. Without the gate this
+  // spinner is the first of three loading states stacked back to back on a cold dashboard load, and
+  // it is the one carrying the least information — the shell isn't even up yet to give it a shape.
+  if (isLoading) return showSessionLoader ? <FullScreenLoader /> : null;
   if (!isAuthenticated) {
     return <Navigate to={`/login?returnUrl=${encodeURIComponent(location.pathname)}`} replace />;
   }

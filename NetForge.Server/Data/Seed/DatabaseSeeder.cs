@@ -17,13 +17,19 @@ public static class DatabaseSeeder
         if (db.Database.IsSqlite()) db.Database.Migrate();
         else db.Database.EnsureCreated();
 
+        // Seeding is a machine write, not a user action: without this the trail opens with hundreds of
+        // identical rows stamped in the same second, which buries the real history and turns every
+        // activity-over-time view into one spike. DemoActivitySeeder writes the trail we actually want.
+        using var _ = NetForge.Server.Platform.Auditing.AuditSuppression.Begin();
+
         await IdentitySeeder.SeedAsync(services);
 
-        // Demo content (extra users + the Sales sample data) is opt-in: always in Development, or anywhere
-        // "Seed:DemoData" is true (e.g. the public demo site).
+        // Demo content (the user directory, the Sales sample data, and the activity feeds) is opt-in:
+        // always in Development, or anywhere "Seed:DemoData" is true (e.g. the public demo site).
         if (env.IsDevelopment() || config.GetValue<bool>("Seed:DemoData"))
         {
             await DemoUsersSeeder.SeedAsync(services);
+            await DemoActivitySeeder.SeedAsync(services);
         }
     }
 }

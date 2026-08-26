@@ -8,7 +8,7 @@ import { commentsApi, type Comment, type MentionableUser } from '@/lib/api/comme
 import { isApiError } from '@/lib/problem';
 import { timeAgo } from '@/lib/format';
 import { cn } from '@/lib/utils';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { UserAvatar } from '@/components/user-avatar';
 import { Button } from '@/components/ui/button';
 import { EmptyState, ErrorState, LoadingSkeleton } from '@/components/data-states';
 
@@ -63,10 +63,7 @@ function CommentRow({ comment, onDelete, deleting }: { comment: Comment; onDelet
   const { t } = useTranslation();
   return (
     <li className="flex gap-3">
-      <Avatar className="size-8 shrink-0">
-        {comment.authorAvatarUrl && <AvatarImage src={comment.authorAvatarUrl} alt="" />}
-        <AvatarFallback>{initials(comment.authorName)}</AvatarFallback>
-      </Avatar>
+      <UserAvatar name={comment.authorName} avatarUrl={comment.authorAvatarUrl} className="size-8 shrink-0" />
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
           <span className="text-sm font-medium">{comment.authorName}</span>
@@ -230,10 +227,12 @@ function Composer({
                   i === highlight ? 'bg-accent' : 'hover:bg-accent/60',
                 )}
               >
-                <Avatar className="size-6">
-                  {user.avatarUrl && <AvatarImage src={user.avatarUrl} alt="" />}
-                  <AvatarFallback className="text-[10px]">{initials(user.name)}</AvatarFallback>
-                </Avatar>
+                <UserAvatar
+                  name={user.name}
+                  avatarUrl={user.avatarUrl}
+                  className="size-6"
+                  fallbackClassName="text-[10px]"
+                />
                 <span className="min-w-0 flex-1 truncate">{user.name}</span>
                 <span className="text-muted-foreground truncate text-xs">@{user.token}</span>
               </button>
@@ -257,10 +256,4 @@ function renderBody(body: string) {
       <Fragment key={i}>{part}</Fragment>
     ),
   );
-}
-
-function initials(value: string): string {
-  const parts = value.trim().split(/\s+/);
-  if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
-  return value.slice(0, 2).toUpperCase();
 }

@@ -37,17 +37,19 @@ public sealed class CustomWebApplicationFactory : WebApplicationFactory<Program>
         // Keep Hangfire's own SQLite store out of the repo working tree.
         builder.UseSetting("ConnectionStrings:Hangfire", _hangfirePath);
 
+        /*
+         * Point the app's OWN provider switch at the throwaway file rather than re-registering
+         * AppDbContext here. Re-registering only replaced the options descriptor, which leaves the
+         * original provider's services in the container — and EF refuses two providers at once, so
+         * every --database postgres/sqlserver scaffold's integration suite failed to run at all
+         * ("Only a single database provider can be registered"). Going through configuration also
+         * keeps Program.cs's interceptors, one of which (TenantInterceptor) the old swap dropped.
+         */
+        builder.UseSetting("Database:Provider", "sqlite");
+        builder.UseSetting("ConnectionStrings:Default", $"Data Source={_dbPath}");
+
         builder.ConfigureTestServices(services =>
         {
-            // Repoint the app DbContext at the throwaway SQLite file, preserving the audit interceptor.
-            var optionsDescriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<AppDbContext>));
-            if (optionsDescriptor is not null) services.Remove(optionsDescriptor);
-
-            services.AddDbContext<AppDbContext>((serviceProvider, options) =>
-            {
-                options.UseSqlite($"Data Source={_dbPath}");
-            });
-
             // Make the header-driven test scheme the default authenticator/challenger. AddIdentity pins
             // DefaultAuthenticate/Challenge to the cookie scheme explicitly, so overriding DefaultScheme
             // alone isn't enough — all three must point at "Test". The cookie scheme stays registered

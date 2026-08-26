@@ -985,6 +985,7 @@
       "desc": "The latest orders placed."
     },
     "kpiHero": {
+      "vsPrevious": "vs previous 7 days",
       "title": "KPI hero",
       "desc": "A headline metric in a bold, branded card."
     },
@@ -1008,10 +1009,15 @@
     "opt": {
       "totalUsers": "Total users",
       "newUsersThisWeek": "New users this week",
+      "newUsersThisWeekShort": "New this week",
       "auditToday": "Events today",
       "unreadNotifications": "Unread notifications",
+      "unreadNotificationsShort": "Unread",
+      "notificationsThisWeek": "Notifications this week",
+      "notificationsThisWeekShort": "Notifications",
       "signups": "Sign-ups over time",
       "usersByRole": "Users by role",
+      "auditDaily": "Activity per day",
       "auditByCategory": "Activity by category",
       "revenue": "Revenue",
       "orders": "Orders",

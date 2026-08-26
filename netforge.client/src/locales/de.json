@@ -985,6 +985,7 @@
       "desc": "Die zuletzt aufgegebenen Bestellungen."
     },
     "kpiHero": {
+      "vsPrevious": "ggü. den letzten 7 Tagen",
       "title": "KPI-Highlight",
       "desc": "Eine zentrale Kennzahl in einer auffälligen, gebrandeten Karte."
     },
@@ -1008,10 +1009,15 @@
     "opt": {
       "totalUsers": "Benutzer gesamt",
       "newUsersThisWeek": "Neue Benutzer diese Woche",
+      "newUsersThisWeekShort": "Neu diese Woche",
       "auditToday": "Ereignisse heute",
       "unreadNotifications": "Ungelesene Benachrichtigungen",
+      "unreadNotificationsShort": "Ungelesen",
+      "notificationsThisWeek": "Benachrichtigungen diese Woche",
+      "notificationsThisWeekShort": "Nachrichten",
       "signups": "Registrierungen über die Zeit",
       "usersByRole": "Benutzer nach Rolle",
+      "auditDaily": "Aktivität pro Tag",
       "auditByCategory": "Aktivität nach Kategorie",
       "revenue": "Umsatz",
       "orders": "Bestellungen",

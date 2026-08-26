@@ -985,6 +985,7 @@
       "desc": "أحدث الطلبات المقدَّمة."
     },
     "kpiHero": {
+      "vsPrevious": "مقارنة بالأيام السبعة السابقة",
       "title": "مؤشر أداء بارز",
       "desc": "مقياس رئيسي في بطاقة بارزة."
     },
@@ -1008,10 +1009,15 @@
     "opt": {
       "totalUsers": "إجمالي المستخدمين",
       "newUsersThisWeek": "مستخدمون جدد هذا الأسبوع",
+      "newUsersThisWeekShort": "الجدد هذا الأسبوع",
       "auditToday": "أحداث اليوم",
       "unreadNotifications": "الإشعارات غير المقروءة",
+      "unreadNotificationsShort": "غير المقروءة",
+      "notificationsThisWeek": "الإشعارات هذا الأسبوع",
+      "notificationsThisWeekShort": "الإشعارات",
       "signups": "التسجيلات عبر الزمن",
       "usersByRole": "المستخدمون حسب الدور",
+      "auditDaily": "النشاط اليومي",
       "auditByCategory": "النشاط حسب الفئة",
       "revenue": "الإيرادات",
       "orders": "الطلبات",

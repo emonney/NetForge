@@ -28,8 +28,12 @@ export function AppTopbar() {
 
       {/* Prominent, centred search — the multi-purpose command palette (VS Code-style). */}
       {/* min-w-9 keeps the collapsed icon-only trigger at its natural size on a phone; without it the
-          flex-1 track shrinks past the button and it spills over the control cluster beside it. */}
-      <div className="flex min-w-9 flex-1 justify-center px-1 sm:px-2">
+          flex-1 track shrinks past the button and it spills over the control cluster beside it. The
+          floor is the button's size, so it must be all button: an inset here would come out of the
+          trigger (a 28px runt beside 36px controls), not out of the header, which on a 320px phone is
+          already spent to the pixel. The track is also the query container the trigger reads to know
+          it has collapsed (command-palette.tsx). */}
+      <div className="@container flex min-w-9 flex-1 justify-center sm:px-2">
         <span data-tour="command" className="w-full max-w-md">
           {commandPalette}
         </span>

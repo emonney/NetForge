@@ -437,10 +437,12 @@ import type { WidgetDefinition } from '../types';
 
 export const projectCountWidget: WidgetDefinition = {
   type: 'project-count',
-  title: 'Project count',
+  title: 'Project count',              // the picker's name for the type
   description: 'How many active projects',
   icon: FolderKanban,
+  titleOf: (config) => LABELS[String(config.metric)],  // the header for *this* instance
   defaultSize: { w: 3, h: 2, minW: 2, minH: 2 },
+  narrowSpan: 'half',                  // pairs two-up below 996px; 'full' (default) otherwise
   permission: 'projects.read',         // omit = available to everyone
   defaultConfig: {},
   Component: ({ config }) => { /* render */ return null; },
@@ -448,6 +450,31 @@ export const projectCountWidget: WidgetDefinition = {
 ```
 
 Register it in `src/widgets/registry.ts` (add the import + push it onto the `ALL` array). It then appears in the "Add widget" picker and renders by its `type`. Data widgets bind to the `/api/dashboard` sources.
+
+Three board-level properties decide how it reads next to everything else:
+
+- **`titleOf` / `iconOf` / `accentOf`** — a configurable widget's header should name and colour what
+  *this* instance shows, not its type. Four tiles headed "Stat" behind four identical glyphs tell the
+  reader nothing. The body then carries neither label nor icon: on a tile this small, saying either
+  twice costs a whole row (and it's the row that truncates first).
+- **`narrowSpan`** — `'half'` if the whole content is one figure, so they pack four-across below 996px
+  of grid and two-across below 700px. Everything else takes half the row at four columns and the whole
+  row at two; a chart at ~170px is unreadable. Declare it rather than inferring from `defaultSize`:
+  desktop width says how much room a widget was *given*, not how little it can live in.
+- **Surface tier** — add a single-number tile to `LEAD_WIDGETS` (in `widget-card.tsx`, and its twin in
+  the Angular `widget-host.ts`) or it renders as a quiet panel instead of a raised headline tile.
+
+Bind a trend line to the metric's *own* series, and plot the one its number claims: a running total gets
+the cumulative curve (`runningTotal(daily, value)` — monotonic, so it reads as growth); a metric whose
+label is already a window ("this week") gets a rolling 7-day sum (`rollingSum(daily, 7)`, which also
+rescues a series too coarse to draw — 0/1/2/3 is a zigzag between four values); one about a single day
+gets the daily counts. A live count with no history plots nothing rather than borrowing a series from
+elsewhere, which is what makes every tile on a board look identical.
+
+**Keep the board hole-free.** Author every row to fill all twelve columns and every run of compact tiles
+to a multiple of four, so the authored board *and* both narrow tiers pack cleanly. The packer closes
+what's left over — it takes the next widget that fits a gap rather than stranding it, then grows
+whatever column still ends short — but a hole showing up means the authored rows drifted.
 
 ---
 
