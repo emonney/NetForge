@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <a href="https://demo.netforge.ebenmonney.com"><b>▶ Live demo</b></a> &nbsp;·&nbsp;
+  <a href="https://netforge-react.ebenmonney.com"><b>▶ Live demo</b></a> &nbsp;·&nbsp;
   <a href="https://netforge.ebenmonney.com/#configure"><b>⚙ Build your edition</b></a> &nbsp;·&nbsp;
   <a href="https://docs.netforge.ebenmonney.com"><b>📖 Documentation</b></a> &nbsp;·&nbsp;
   <a href="#community-vs-pro"><b>Community vs Pro</b></a>
@@ -37,7 +37,7 @@ dotnet run --project NetForge.Server   # SpaProxy auto-starts the React client t
 
 ## See it in action
 
-The screenshots below are the full product (the [**live demo**](https://demo.netforge.ebenmonney.com) runs Pro) — light **and** dark, desktop **and** mobile. The [Community vs Pro](#community-vs-pro) table shows what's in this free edition.
+The screenshots below are the full product (the [**live demo**](https://netforge-react.ebenmonney.com) runs Pro) — light **and** dark, desktop **and** mobile. The [Community vs Pro](#community-vs-pro) table shows what's in this free edition.
 
 ![Dashboard (light)](docs/screenshots/dashboard-light.png)
 
@@ -138,7 +138,7 @@ Community is a complete starter on its own. **Pro** adds the product layer most 
 | The **configurator** — toggle every feature at scaffold time | — | ✅ |
 
 <p align="center">
-  <b><a href="https://demo.netforge.ebenmonney.com">Try the full app live →</a></b> &nbsp;&nbsp;|&nbsp;&nbsp;
+  <b><a href="https://netforge-react.ebenmonney.com">Try the full app live →</a></b> &nbsp;&nbsp;|&nbsp;&nbsp;
   <b><a href="https://netforge.ebenmonney.com/#configure">Build & download your exact edition →</a></b>
 </p>
 
